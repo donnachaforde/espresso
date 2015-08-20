@@ -26,3 +26,18 @@
 *.exe
 *.out
 *.app
+
+# Visual Source Safe files
+*.scc
+
+# Visual Studio files
+*.dsw
+*.dsp
+*.ncb
+*.opt
+*.positions
+*.plg
+*.vcproj
+*.sln
+*.suo
+
