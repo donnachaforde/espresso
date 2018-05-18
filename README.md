@@ -1,6 +1,9 @@
 # espresso
 A small C++ library to help with developing CLI tools quickly (plus a few handy CLI utilities).
 
+***
+## Contents
+
 Whats included?
 
 * espresso-lib - a static C++ library
@@ -10,6 +13,9 @@ Whats included?
 
 * espresso-tools - A set of help utilities, built using the espresso library. 
 
+
+***
+## Supported Platforms
 
 What platforms are supported?
 
