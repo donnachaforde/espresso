@@ -37,10 +37,10 @@
 *.opt
 *.positions
 *.plg
-*.sln
+#*.sln
 *.suo
 *.vcproj
-*.vcxproj
+#*.vcxproj
 *.vcxproj.user
 *.vcxproj.filters
 *.VC.db
