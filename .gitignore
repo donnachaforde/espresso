@@ -45,8 +45,10 @@
 *.vcxproj.filters
 *.VC.db
 *.VC.VC.opendb
+.vs
 ipch
 VC14Debug
+VC17Debug
 
 
 # Jetbrains CLion project directory
