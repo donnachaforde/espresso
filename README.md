@@ -11,8 +11,6 @@ Whats included?
     - Support for simplfying processing of command-line args.
     - Helper code around some handy C/C++ library calls
 
-* espresso-tools - A set of help utilities, built using the espresso library. 
-
 
 ***
 ## Supported Platforms
