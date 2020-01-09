@@ -32,7 +32,7 @@ The software was initially written to be used on Windows 32-bit but it has been 
 
 The project files were originally started using Visual Studio 6.0 (which gives an indication as to the point 'tinkering' began) but were later ported to Visual Studio 2003, then Visual Studio 2005 and later Visual Studio 2008. There followed a fallow period before I again became re-acquainted with DevStudio using Visual Studio 2014 and then Visual Studio 2017. 
 
-Whenever I needed a tool to work on a Unix/Linux platform, I used a really simple Make file so a number of the tools projects will have make capability.
+Whenever I needed a tool to work on a Unix/Linux platform, I used a really simple Make file so a number of the tools projects will have `make` capability.
 
 
 Donnacha Forde
