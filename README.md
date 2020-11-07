@@ -1,15 +1,25 @@
 # README - espresso lib 
-A small C++ library to help with developing CLI tools quickly.
+A small C++ library for developing CLI tools easily and quickly.
+
+***
+## Introduction
+
+Have you ever had a good idea for a CLI tool but found yourself somewhat hindered by having to provide support for command-line arguments? If so, the **espresso-lib** can alleviate much of the pain by providing a simple framework for parsing and handling command-line switches. 
+
+The key features are:
+* A clear and simple API to define the arguments/switches supported by your utility. 
+* Parse the arglist and provide syntax checking to ensure the correct params are being provided.
+* Provide basic help and info messages about your CLI tool. 
+
+
+
 
 ***
 ## Contents
 
 Whats included?
 
-* espresso-lib - a static C++ library
- 
-    - Support for simplfying processing of command-line args.
-    - Helper code around some handy C/C++ library calls
+* espresso-lib - a static C++ library and C++ header files 
 
 
 ***
@@ -18,23 +28,29 @@ Whats included?
 
 What platforms are supported?
 
-* Windows 32-bit
+* Windows 10 (Visual C++ 2017)
+* macOS (gcc)
+
+
+Previously, the following platforms were supported for *gcc*. They haven't been exercised in recent years but there's every chance the makefile will still work. 
+
 * Solaris SunOS
 * AIX
 * HP-UX
 * Red Hat Linux
 
-The software was initially written to be used on Windows 32-bit but it has been successfully built and used Unix/Linux platforms using the primative makefile provided.
+The software was initially written to be used on Windows 32-bit but it has been successfully built and used Unix/Linux platforms using the primitive makefile provided.
 
 
 ***
 ## Build Environments
 
-The project files were originally started using Visual Studio 6.0 (which gives an indication as to the point 'tinkering' began) but were later ported to Visual Studio 2003, then Visual Studio 2005 and later Visual Studio 2008. There followed a fallow period before I again became re-acquainted with DevStudio using Visual Studio 2014 and then Visual Studio 2017. 
+The project files were originally started using Visual Studio 6.0 (which gives an indication as to the point 'tinkering' began) but were later ported to Visual Studio 2003, then Visual Studio 2005 and later Visual Studio 2008. There followed a fallow period before I again became re-acquainted with DevStudio using Visual Studio 2014 and then Visual Studio 2017. Most recently, I've ported to Visual Studio 2019. 
 
-Whenever I needed a tool to work on a Unix/Linux platform, I used a really simple Make file so a number of the tools projects will have `make` capability.
+The makefile is pretty trivial but works. Plans are afoot to adopt CMake. 
+
 
 
 Donnacha Forde
-2008
+2020
 
