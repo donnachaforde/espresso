@@ -15,7 +15,7 @@ EXE = libespresso.a
 CC		= gcc
 CCFLAGS 	= -g
 CCDEFINES 	= 
-CCPATHS 	= -I../../include -I../../include/espresso
+CCPATHS 	= -I../../include -I../../include/espresso -I../include -I../include/espresso
 
 LD 		= gcc
 LDPATHS		= -L.  -L../../lib/espresso
