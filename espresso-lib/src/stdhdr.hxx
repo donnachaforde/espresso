@@ -54,7 +54,9 @@
 	#undef DEBUG
 	#undef _DEBUG
 #else
-	#pragma message("note : Performing Debug Build.")
+	#ifdef WIN32
+		#pragma message("note : Performing Debug Build.")
+	#endif
 	#ifndef DEBUG
 		#define DEBUG
 	#endif
