@@ -19,7 +19,8 @@ The key features are:
 
 Whats included?
 
-* espresso-lib - a static C++ library and C++ header files 
+* libespresso -  static C++ library 
+* header files - the espresso C++ header files 
 
 
 ***
