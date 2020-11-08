@@ -79,16 +79,14 @@ clean:
 	@echo Cleaning... 
 	
 	@echo Cleaning target output
-	rm -f ${OUTPUTDIR}/${EXE}
-	rm -f ${OBJDIR}/*.o
-	rm *.o *.a core
+	#rm -f ${OUTPUTDIR}/${EXE}
+	#rm -f ${OBJDIR}/*.o
 	@echo Cleaning object code...
+	rm -f *.o *.a 
+	@echo Remove any core dumps...
+	rm -f core
 	#rm -f ${OBJDIR}/*.o
 	@echo Done! 
 
 
-veryclean: clean
-
-	rmdir ${OUTPUTDIR}
-	rmdir ${OBJDIR}
 
