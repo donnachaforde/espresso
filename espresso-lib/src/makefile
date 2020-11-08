@@ -13,7 +13,7 @@ EXE = libespresso.a
 
 
 CC			= gcc
-CCFLAGS 	= -g
+CCFLAGS 	= -g 	
 CCDEFINES 	= 
 CCPATHS 	= -I./include -I./include/espresso
 CCPATHS 	= -I../include -I../include/espresso
@@ -76,16 +76,10 @@ all: ${OBJ}
 # Clean
 
 clean: 
-	@echo Cleaning... 
-	
-	@echo Cleaning target output
-	#rm -f ${OUTPUTDIR}/${EXE}
-	#rm -f ${OBJDIR}/*.o
 	@echo Cleaning object code...
 	rm -f *.o *.a 
 	@echo Remove any core dumps...
 	rm -f core
-	#rm -f ${OBJDIR}/*.o
 	@echo Done! 
 
 
