@@ -18,7 +18,6 @@ CCDEFINES 	=
 CCPATHS 	= -I./include -I./include/espresso
 CCPATHS 	= -I../include -I../include/espresso
 
-SRCDIR 		= src
 
 LD 			= gcc
 LDPATHS		= -L.  -L../../lib/espresso
@@ -30,8 +29,9 @@ ARPATHS		=
 ARLIBS		=
 ARFLAGS		=
 
+SRCDIR 		= src
 OBJDIR		= ./obj 
-OUTPUTDIR	= ./lib
+OUTDIR		= ./lib
 
 
 #---------------------------------------------------------------------------
@@ -54,7 +54,7 @@ OBJ =  Args.o stdhdr.o Arg.o IArgMgr.o ArgMgr.o ArgMgrCLI.o espresso.o StopWatch
 all: ${OBJ}
 	@echo Creating library...
 	${AR} -r ${EXE} ${ARPATHS} ${OBJ} ${ARLIBS} 
-	#${AR} -r ${OUTPUTDIR}/${EXE} ${ARPATHS} ${OBJDIR}/${OBJS} ${ARLIBS} 
+	#${AR} -r ${OUTDIR}/${EXE} ${ARPATHS} ${OBJDIR}/${OBJS} ${ARLIBS} 
 
 
 #---------------------------------------------------------------------------
