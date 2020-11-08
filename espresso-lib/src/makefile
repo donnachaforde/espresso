@@ -7,7 +7,7 @@
 
 
 #---------------------------------------------------------------------------
-# Declare vars
+# Declare build vars
 
 EXE = libespresso.a
 
@@ -29,16 +29,39 @@ ARPATHS		=
 ARLIBS		=
 ARFLAGS		=
 
-SRCDIR 		= src
-OBJDIR		= ./obj 
-OUTDIR		= ./lib
+
+#---------------------------------------------------------------------------
+# Build directories
+
+#SRCDIR 		= src
+#OBJDIR		= obj 
+OUTDIR		= lib
+
+#OBJDIRS = $(patsubst %,$(OUTDIR)/%, $(OBJDIR))
+#
+#build: $(OBJDIRS)
+#    @echo '$<'
+#
+#$(OBJDIRS):
+#    mkdir -p $@ 
+
 
 
 #---------------------------------------------------------------------------
 # source
 
 
-OBJ =  Args.o stdhdr.o Arg.o IArgMgr.o ArgMgr.o ArgMgrCLI.o espresso.o StopWatch.o strings.o sys.o time.o 
+OBJ =  	stdhdr.o \
+		espresso.o \
+		Arg.o \
+		Args.o \
+		IArgMgr.o \
+		ArgMgr.o \
+		ArgMgrCLI.o \
+		StopWatch.o \
+		strings.o \
+		sys.o \
+		time.o 
 
 
 # we expect to find our source code in a 'src' folder
@@ -51,14 +74,19 @@ OBJ =  Args.o stdhdr.o Arg.o IArgMgr.o ArgMgr.o ArgMgrCLI.o espresso.o StopWatch
 
 
 #all: ${SRCDIR}/${OBJ}
-all: ${OBJ}
+all: build ${OBJ}
 	@echo Creating library...
-	${AR} -r ${EXE} ${ARPATHS} ${OBJ} ${ARLIBS} 
+	#${AR} -r ${EXE} ${ARPATHS} ${OBJ} ${ARLIBS} 
+	${AR} -r ${OUTDIR}/${EXE} ${ARPATHS} ${OBJ} ${ARLIBS} 
 	#${AR} -r ${OUTDIR}/${EXE} ${ARPATHS} ${OBJDIR}/${OBJS} ${ARLIBS} 
 
 
 #---------------------------------------------------------------------------
 # Build Instructions
+
+build:
+	mkdir -p ${OUTDIR}
+
 
 .SUFFIXES: .C 
 .C.o:
@@ -77,7 +105,9 @@ all: ${OBJ}
 
 clean: 
 	@echo Cleaning object code...
-	rm -f *.o *.a 
+	rm -f *.o *.a
+	rm -f ${OUTDIR}/*.a
+	rmdir ${OUTDIR}
 	@echo Remove any core dumps...
 	rm -f core
 	@echo Done! 
