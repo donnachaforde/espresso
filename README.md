@@ -40,18 +40,22 @@ Previously, the following platforms were supported for *gcc*. They haven't been 
 * HP-UX
 * Red Hat Linux
 
-The software was initially written to be used on Windows 32-bit but it has been successfully built and used Unix/Linux platforms using the primitive makefile provided.
+The software was originally developed on Windows 32-bit environments but was successfully ported and deployed to Unix/Linux environments. Later, the code was successfully built for x64 environments without issue. While the `makefile` is primitive, it should still work for Unix/Linux environments. Most recently, it has been revised to build on macOS environments. 
 
 
 ***
 ## Build Environments
 
-The project files were originally started using Visual Studio 6.0 (which gives an indication as to the point 'tinkering' began) but were later ported to Visual Studio 2003, then Visual Studio 2005 and later Visual Studio 2008. There followed a fallow period before I again became re-acquainted with DevStudio using Visual Studio 2014 and then Visual Studio 2017. Most recently, I've ported to Visual Studio 2019. 
+The original visual studio file were created Visual Studio 6.0 (which gives an indication as to the point when this 'tinkering' began) but were later ported to Visual Studio 2003, then Visual Studio 2005 and later Visual Studio 2008. There followed a fallow period before I again became re-acquainted with DevStudio using Visual Studio 2014 and then Visual Studio 2017. Most recently, I've ported to Visual Studio 2019. 
 
 The makefile is pretty trivial but works. Plans are afoot to adopt CMake. 
 
 
 
+
+
+
 Donnacha Forde
+
 2020
 
