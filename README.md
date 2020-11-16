@@ -51,6 +51,11 @@ The original visual studio file were created Visual Studio 6.0 (which gives an i
 The makefile is pretty trivial but works. Plans are afoot to adopt CMake. 
 
 
+***
+## Examples
+Check out [Espresso Tools](https://github.com/donnachaforde/espresso-tools) for example code that uses Espresso lib. 
+
+***
 
 
 
