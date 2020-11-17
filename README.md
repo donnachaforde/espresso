@@ -4,12 +4,13 @@ A small C++ library for developing CLI tools easily and quickly.
 ***
 ## Introduction
 
-Have you ever had a good idea for a CLI tool but found yourself somewhat hindered by having to provide support for command-line arguments? If so, **espresso** can alleviate this overhead by handling parsing and handling command-line switches. 
+Have you ever had a good idea for a CLI tool you want to develop in C++ but found yourself somewhat hindered by having to provide support for command-line arguments? If so, **espresso** can alleviate the overhead of managing command-line options, help and versioning output and thereby, free you up to concentrate on solving your utility. 
 
 The key features are:
 * A clear and simple API to define the arguments/switches supported by your utility. 
 * Parse the arglist and provide syntax checking to ensure the correct params are being provided.
 * Provide basic help and info messages about your CLI tool. 
+* Provide an easy way to report version info.
 
 
 
@@ -62,5 +63,5 @@ Check out [Espresso Tools](https://github.com/donnachaforde/espresso-tools) for 
 
 Donnacha Forde
 
-2020
+November, 2020
 
