@@ -39,6 +39,7 @@
 .vs
 
 # Visual Studio build directories
+Win32
 x64
 
 # Jetbrains CLion project directory
