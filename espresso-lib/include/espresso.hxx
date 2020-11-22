@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½ 1993-2020, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
@@ -42,6 +42,13 @@
 		
 		#pragma warning( disable : 4786 ) // Ignore string too long caused by STL declarations
 		#pragma warning( disable : 4503 ) // Ignore 'decorated name length exceeded and truncated' (template names can be very long)
+
+		// need to disable these warning with newer, fuzzier compilers, otherwise can't use things like strcpy, sprintf, etc.
+		#pragma message("note : CRT security warning (so we can use ol' fashioned 'C' calls)")
+		#define _CRT_SECURE_NO_WARNINGS
+
+		#pragma message("note : Suppress warnings about deprecated POSIX function names.")
+		#pragma warning(suppress : 4996)
 
 	#else
 
