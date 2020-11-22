@@ -39,6 +39,8 @@
 .vs
 
 # Visual Studio build directories
+Debug
+Release
 Win32
 x64
 
