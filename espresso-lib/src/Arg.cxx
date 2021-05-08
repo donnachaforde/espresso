@@ -31,14 +31,14 @@ using namespace std;
 Arg::Arg(const string& strSwitch, const type_t ArgType, const string& strDescription, bool IsValueRequired, string strValueHint, bool IsMandatory, bool IsCaseSensitive)
 {
 	m_strSwitch = strSwitch;
-	m_ArgType = ArgType;
+	m_argType = ArgType;
 	m_strDescription = strDescription;
-	m_IsValueRequired = IsValueRequired;
+	m_isValueRequired = IsValueRequired;
 	m_strValueHint = strValueHint;
-	m_IsMandatory = IsMandatory;
-	m_IsCaseSensitive = IsCaseSensitive;
-	m_IsPresent = false;
-	m_IsValueSupplied = false;
+	m_isMandatory = IsMandatory;
+	m_isCaseSensitive = IsCaseSensitive;
+	m_isPresent = false;
+	m_isValueSupplied = false;
 	m_nValue = 0;
 }
 
@@ -47,16 +47,16 @@ Arg::Arg(const string& strSwitch, const type_t ArgType, const string& strDescrip
 Arg::Arg(const Arg& rhs)
 {
 	m_strSwitch			= rhs.m_strSwitch;
-	m_ArgType			= rhs.m_ArgType;
+	m_argType			= rhs.m_argType;
 	m_strDescription	= rhs.m_strDescription;
 	m_strValue			= rhs.m_strValue;
 	m_nValue			= rhs.m_nValue;
-	m_IsMandatory		= rhs.m_IsMandatory;
-	m_IsCaseSensitive	= rhs.m_IsCaseSensitive; 
-	m_IsPresent			= rhs.m_IsPresent;
-	m_IsValueRequired	= rhs.m_IsValueRequired;
+	m_isMandatory		= rhs.m_isMandatory;
+	m_isCaseSensitive	= rhs.m_isCaseSensitive; 
+	m_isPresent			= rhs.m_isPresent;
+	m_isValueRequired	= rhs.m_isValueRequired;
 	m_strValueHint		= rhs.m_strValueHint;
-	m_IsValueSupplied   = rhs.m_IsValueSupplied;
+	m_isValueSupplied   = rhs.m_isValueSupplied;
 }
 
 
@@ -66,16 +66,16 @@ Arg& Arg::operator=(const Arg& rhs)
 	if (this != &rhs)
 	{
 		m_strSwitch			= rhs.m_strSwitch;
-		m_ArgType			= rhs.m_ArgType;
+		m_argType			= rhs.m_argType;
 		m_strDescription	= rhs.m_strDescription;
 		m_strValue			= rhs.m_strValue;
 		m_nValue			= rhs.m_nValue;
-		m_IsMandatory		= rhs.m_IsMandatory;
-		m_IsCaseSensitive	= rhs.m_IsCaseSensitive; 
-		m_IsPresent			= rhs.m_IsPresent;
-		m_IsValueRequired	= rhs.m_IsValueRequired;
+		m_isMandatory		= rhs.m_isMandatory;
+		m_isCaseSensitive	= rhs.m_isCaseSensitive; 
+		m_isPresent			= rhs.m_isPresent;
+		m_isValueRequired	= rhs.m_isValueRequired;
 		m_strValueHint		= rhs.m_strValueHint;
-		m_IsValueSupplied   = rhs.m_IsValueSupplied;
+		m_isValueSupplied   = rhs.m_isValueSupplied;
 	}
 
 	return *this; 
@@ -88,138 +88,138 @@ Arg::~Arg()
 
 
 
-string Arg::GetSwitch() const
+string Arg::getSwitch() const
 {
 	return m_strSwitch; 
 }
 
 
-Arg::type_t Arg::GetType() const
+Arg::type_t Arg::getType() const
 {
-	return m_ArgType; 
+	return m_argType; 
 }
 
 
-long Arg::GetNumericValue() const
+long Arg::getNumericValue() const
 {
 	return m_nValue; 
 }
 
 
-string Arg::GetStringValue() const
+string Arg::getStringValue() const
 {
 	return m_strValue; 
 }
 
 
-string Arg::GetDescription() const
+string Arg::getDescription() const
 {
 	return m_strDescription;
 }
 
 
-bool Arg::IsMandatory() const
+bool Arg::isMandatory() const
 {
-	return m_IsMandatory; 
+	return m_isMandatory; 
 }
 
 
-bool Arg::IsPresent() const
+bool Arg::isPresent() const
 {
-	return m_IsPresent;
+	return m_isPresent;
 }
 
 
-bool Arg::IsCaseSensitive() const
+bool Arg::isCaseSensitive() const
 {
-	return m_IsCaseSensitive;
+	return m_isCaseSensitive;
 }
 
 
-bool Arg::IsValueRequired() const
+bool Arg::isValueRequired() const
 {
-	return m_IsValueRequired;
+	return m_isValueRequired;
 }
 
 
-bool Arg::IsValueSupplied() const
+bool Arg::isValueSupplied() const
 {
-	return m_IsValueSupplied;
+	return m_isValueSupplied;
 }
 
 
-string Arg::GetValueHint() const
+string Arg::getValueHint() const
 {
 	return m_strValueHint;
 }
 
 // a value for an arg is optional if it is not required but has a type other than none
-bool Arg::IsValueOptional() const
+bool Arg::isValueOptional() const
 {
-	return (!this->IsValueRequired() && (m_ArgType != NOARG));
+	return (!this->isValueRequired() && (m_argType != NOARG));
 }
 
 
 
 
 
-void Arg::SetSwitch(const string& strSwitch)
+void Arg::setSwitch(const string& strSwitch)
 {
 	m_strSwitch = strSwitch;
 }
 
 
-void Arg::SetArgType(const type_t ArgType)
+void Arg::setArgType(const type_t ArgType)
 {
-	m_ArgType = ArgType; 
+	m_argType = ArgType; 
 }
 
 
-void Arg::SetStringValue(const string& strValue)
+void Arg::setStringValue(const string& strValue)
 {
 	m_strValue = strValue;
 }
 
 
-void Arg::SetDescription(const string& strDescription)
+void Arg::setDescription(const string& strDescription)
 {
 	m_strDescription = strDescription;
 }
 
 
-void Arg::SetNumericValue(const long nValue)
+void Arg::setNumericValue(const long nValue)
 {
 	m_nValue = nValue;
 }
 
 
-void Arg::SetMandatory(const bool IsMandatory)
+void Arg::setMandatory(const bool IsMandatory)
 {
-	m_IsMandatory = IsMandatory;
+	m_isMandatory = IsMandatory;
 }
 
 
-void Arg::SetPresent(const bool IsPresent)
+void Arg::setPresent(const bool IsPresent)
 {
-	m_IsPresent = IsPresent;
+	m_isPresent = IsPresent;
 }
 
 
-void Arg::SetCaseSensitive(const bool IsCaseSensitive)
+void Arg::setCaseSensitive(const bool IsCaseSensitive)
 {
-	m_IsCaseSensitive = IsCaseSensitive;
+	m_isCaseSensitive = IsCaseSensitive;
 }
 
 
-void Arg::SetValueRequired(const bool IsValueRequired)
+void Arg::setValueRequired(const bool IsValueRequired)
 {
-	m_IsValueRequired = IsValueRequired;
+	m_isValueRequired = IsValueRequired;
 }
 
 
-void Arg::SetValueSupplied(bool IsValueSupplied)
+void Arg::setValueSupplied(bool IsValueSupplied)
 {
-	m_IsValueSupplied = IsValueSupplied;
+	m_isValueSupplied = IsValueSupplied;
 }
 
 
@@ -247,17 +247,17 @@ std::ostream& espresso::operator<<(std::ostream& os, const Arg& arg)
 	//
 	
 	string strSwitch = "--";
-	strSwitch += arg.GetSwitch();
+	strSwitch += arg.getSwitch();
 
-	if (arg.IsValueRequired())
+	if (arg.isValueRequired())
 	{
-		if (arg.GetValueHint().size() > 0)
+		if (arg.getValueHint().size() > 0)
 		{
 			strSwitch += "=<";
-			strSwitch += arg.GetValueHint();
+			strSwitch += arg.getValueHint();
 			strSwitch += ">";
 		}
-		else if (arg.GetType() == Arg::INTEGER)
+		else if (arg.getType() == Arg::INTEGER)
 		{
 			strSwitch += "=<int>";
 		}
@@ -276,10 +276,10 @@ std::ostream& espresso::operator<<(std::ostream& os, const Arg& arg)
 	// stream out the help description
 	//
 
-	if (arg.GetDescription().size() <= SIZE_OF_TEXT)
+	if (arg.getDescription().size() <= SIZE_OF_TEXT)
 	{
 		os << setiosflags(ios::left) << setw(SIZE_OF_INDENT) << "";
-		os << arg.GetDescription(); 
+		os << arg.getDescription(); 
 	}
 	else
 	{
@@ -287,7 +287,7 @@ std::ostream& espresso::operator<<(std::ostream& os, const Arg& arg)
 		// format the help into indented blocks 
 		//
 
-		string strDesc = arg.GetDescription(); 
+		string strDesc = arg.getDescription(); 
 		
 		string strLine; 
 		string strFormattedOutput; 

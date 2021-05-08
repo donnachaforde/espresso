@@ -30,7 +30,7 @@ using namespace espresso;
 
 
 
-/*static*/ tid_t threads::GetCurrentThreadID()
+/*static*/ tid_t threads::getCurrentThreadID()
 {
 
 	tid_t nThreadID = -1;
@@ -51,7 +51,7 @@ using namespace espresso;
 
 
 
-/*static*/ void threads::Wait(long nNumMillisecs)
+/*static*/ void threads::wait(long nNumMillisecs)
 {
 
 #ifdef WIN32

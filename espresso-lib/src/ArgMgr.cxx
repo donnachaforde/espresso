@@ -19,7 +19,7 @@
 #include <Args.hxx>
 using namespace espresso;
 
-#include <iostream>
+//#include <iostream>
 /*
 #include <ostream>
 #include <strstream>
@@ -72,7 +72,7 @@ ArgMgr::~ArgMgr()
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::OnRequestHelp(const Args& args)
+void ArgMgr::onRequestHelp(const Args& args)
 {
 }
 
@@ -90,7 +90,7 @@ void ArgMgr::OnRequestHelp(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::OnRequestUsage(const Args& args)
+void ArgMgr::onRequestUsage(const Args& args)
 {
 }
 
@@ -108,7 +108,7 @@ void ArgMgr::OnRequestUsage(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::OnRequestVersion(const Args& args)
+void ArgMgr::onRequestVersion(const Args& args)
 {
 }
 
@@ -126,7 +126,7 @@ void ArgMgr::OnRequestVersion(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::OnRequestInfo(const Args& args)
+void ArgMgr::onRequestInfo(const Args& args)
 {
 }
 
@@ -152,37 +152,38 @@ void ArgMgr::OnRequestInfo(const Args& args)
 //
 //					0 to indicate a succesful parse but without any auto handled args
 //
-// Notes          : 
+// Notes          : @todo This needs to be rewritten to (probably) just return a bool. As it stands, 
+// and test such as if (!ParseAndProcessArgs()) will translate to 'false' when we return -1. 
 //
 //------------------------------------------------------------------------------
-int ArgMgr::ParseAndProcessArgs(Args& args)
+int ArgMgr::parseAndProcessArgs(Args& args)
 {
 	// parse the arg list
-	if (!args.Parse())
+	if (!args.parse())
 	{
 		return -1;
 	}
 
 
 	// check for standard requests for help, usage, version and info
-	if (args.IsPresent("help") || args.IsPresent('h') || args.IsPresent('?'))
+	if (args.isPresent("help") || args.isPresent('h') || args.isPresent('?'))
 	{
-		this->OnRequestHelp(args);
+		this->onRequestHelp(args);
 		return 1;
 	}
-	else if (args.IsPresent("usage"))
+	else if (args.isPresent("usage"))
 	{
-		this->OnRequestUsage(args);
+		this->onRequestUsage(args);
 		return 1;
 	}
-	else if (args.IsPresent("version"))
+	else if (args.isPresent("version"))
 	{
-		this->OnRequestVersion(args);
+		this->onRequestVersion(args);
 		return 1;
 	}
-	else if (args.IsPresent("info"))
+	else if (args.isPresent("info"))
 	{
-		this->OnRequestInfo(args);
+		this->onRequestInfo(args);
 		return 1;
 	}
 	else
@@ -210,6 +211,6 @@ int ArgMgr::ParseAndProcessArgs(Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::OnArgError(const Args& args)
+void ArgMgr::onArgError(const Args& args)
 {
 }

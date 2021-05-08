@@ -19,7 +19,7 @@
 using namespace espresso; 
 
 
-/*static*/ string sys::GetBuildVersion()
+/*static*/ string sys::getBuildVersion()
 {
 	return BUILD_VERSION;
 }

@@ -60,7 +60,7 @@ public:		// construction
 	~Args();
 
 	// set up default args - i.e. --version, --help and --usage; don't invoke if not required
-	void Initialize(); 
+	void addDefaults(); 
 
 
 private:	// disable copy ctor & assignment operator
@@ -79,89 +79,89 @@ public:
 public:		// modifiers
 
 	// add an arg/switch to the expected arg list
-	bool Add(const string& strSwitch, const Arg::type_t ArgType, const string& strDescription, bool IsValueRequired = false, string strValueHint = "", bool IsMandatory = false, bool IsCaseSensitive = true);
+	bool add(const string& strSwitch, const Arg::type_t ArgType, const string& strDescription, bool IsValueRequired = false, string strValueHint = "", bool IsMandatory = false, bool IsCaseSensitive = true);
 
 	// specify an alias for a switch - i.e. a single char representation of a switch - e.g. -v or /v for --version
-	bool AddAlias(const string& strSwitch, const char chAlias);
+	bool addAlias(const string& strSwitch, const char chAlias);
 
 	// parse the arg list
-	bool Parse();
+	bool parse();
 
 	// parse the arg list but can return an erroneous option - todo: consider dropping in favour of Parse()/GetInvalidOption() usage.
-	bool Parse(/*inout*/ string& strInvalidOption);
+	bool parse(/*inout*/ string& strInvalidOption);
 
 
 	// append info about the executable
-	void AddInfo(const string& strInfo);
+	void addProgramInfo(const string& strInfo);
 
 public:		// property accessors
 
 	// get the executable's name
-	string GetProgramName() const;
+	string getProgramName() const;
 	
 	// get the short desciption for this executable
-	string GetProgramDescription() const;
+	string getProgramDescription() const;
 
 	// get the version of the executable
-	string GetVersion() const;
+	string getVersion() const;
 
 	// get the usage instructions for this executable - this is auto-generated from the list of args specified
-	string GetUsage() const;
+	string getUsage() const;
 
 	// get detailed usage descriptions for each option
-	string GetOptionsDescriptions() const;
+	string getOptionsDescriptions() const;
 
 	// retrieve the copyright notice for this executable - this is constructed using the copyright owner and timestamp supplied
-	string GetCopyrightNotice() const;
+	string getCopyrightNotice() const;
 
 	// get the e-mail address for reporting bugs with this executable - generated msg from the e-mail address supplied
-	string GetBugReportingInstructions() const;
+	string getBugReportingInstructions() const;
 
 	// get any executable info (optionally added by user)
-	string GetInfo() const;
+	string getProgramInfo() const;
 
 	// is there a target arg at the end of the arg list
-	bool IsTargetPresent() const;
+	bool isTargetPresent() const;
 
 	// retrieve the target arg
-	string GetTarget() const; 
+	string getTarget() const; 
 
 	// retrieve the arg/switch that caused the parsing to fail
-	string GetInvalidOption() const; 
+	string getInvalidOption() const; 
 
 	
 
 public:		// Arg accessors - must specify the switch or alias
 	
 	// get arg desc
-	string GetDescription(const string& strSwitch) const; 
+	string getDescription(const string& strSwitch) const; 
 
 	// get the stringified version of the value for this switch
-	string GetStringValue(const string& strSwitch) const; 
+	string getStringValue(const string& strSwitch) const; 
 
 	// get the numeric version of the value for this switch
-	long GetNumericValue(const string& strSwitch) const; 
+	long getNumericValue(const string& strSwitch) const; 
 
 	// is this a required arg
-	bool IsMandatory(const string& strSwitch) const; 
+	bool isMandatory(const string& strSwitch) const; 
 
 	// is the arg present on the arg list
-	bool IsPresent(const string& strSwitch) const; 
+	bool isPresent(const string& strSwitch) const; 
 
 	// is the arg present on the arg list, identified by this alias
-	bool IsPresent(const char chAlias) const; 
+	bool isPresent(const char chAlias) const; 
 
 	// was a value supplied for this switch
-	bool IsValueSupplied(const string& strSwitch) const; 
+	bool isValueSupplied(const string& strSwitch) const; 
 
 	// was a value supplied for the switch with this char alias
-	bool IsValueSupplied(const char chAlias) const; 
+	bool isValueSupplied(const char chAlias) const; 
 
 	// is this arg case sensitive
-	bool IsCaseSensitive(const string& strSwitch) const; 
+	bool isCaseSensitive(const string& strSwitch) const; 
 
 	// retrieve the arg-type for this switch
-	Arg::type_t GetType(const string& strSwitch) const; 
+	Arg::type_t getType(const string& strSwitch) const; 
 							  
 
 private:		// internal typedefs - shorthand definitions
@@ -224,19 +224,19 @@ private:	// member vars
 	string m_strInfo; 
 
 	// flag to indicate whether the target arg is present on the arg list
-	bool   m_IsTargetPresent; 
+	bool   m_isTargetPresent; 
 
 	// flag to record whether the user choose to initialize us (and use the default switches)
-	bool   m_IsInitialized;
+	bool   m_isInitialized;
 	
 	// internal placeholder used to report which arg is invalid
 	string m_strInvalidArgv; 
 	
 	// map switch to argument
-	arg_list_t m_ArgList; 
+	arg_list_t m_argList; 
 
 	// alias lookup
-	alias_list_t m_AliasList;
+	alias_list_t m_aliasList;
 };
 
 

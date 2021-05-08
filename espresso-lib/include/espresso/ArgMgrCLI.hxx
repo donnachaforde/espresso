@@ -41,18 +41,18 @@ private:
 public:
 
 	// automatic arg parsing & default handling
-	virtual int ParseAndProcessArgs(Args& args); 
+	virtual int parseAndProcessArgs(Args& args); 
 
 	// arg handlers
-	virtual void OnRequestHelp(const Args& args);
+	virtual void onRequestHelp(const Args& args);
 	
-	virtual void OnRequestUsage(const Args& args);
+	virtual void onRequestUsage(const Args& args);
 	
-	virtual void OnRequestVersion(const Args& args);
+	virtual void onRequestVersion(const Args& args);
 	
-	virtual void OnRequestInfo(const Args& args);
+	virtual void onRequestInfo(const Args& args);
 	
-	virtual void OnArgError(const Args& args);
+	virtual void onArgError(const Args& args);
 };
 
 

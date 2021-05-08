@@ -43,7 +43,7 @@ using namespace espresso;
 // Assumption       : We're working wih ANSI chars
 //
 //------------------------------------------------------------------------------
-/*static*/ bool strings::IsValidString(const char* szCandidate, unsigned long nMaxSize /*= 0*/)
+/*static*/ bool strings::isValidString(const char* szCandidate, unsigned long nMaxSize /*= 0*/)
 {
 	if ( (szCandidate == NULL) || (*szCandidate == '\0') )
 	{
@@ -77,7 +77,7 @@ using namespace espresso;
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-/*static*/ bool strings::IsValidString(string strCandidate, unsigned long nMaxSize /*= 0*/)
+/*static*/ bool strings::isValidString(string strCandidate, unsigned long nMaxSize /*= 0*/)
 {
 	if (strCandidate.length() == 0)
 	{

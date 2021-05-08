@@ -33,21 +33,21 @@ namespace espresso
 	public:
 
 		// start the timer
-		time_t Start();
+		time_t start();
 
 		// stop the timer
-		time_t Stop();
+		time_t stop();
 
 
-		time_t Lap();
+		time_t lap();
 
 
 		// reset the timer 
-		void Reset();
+		void reset();
 
 
 		// returns the duration
-		time_t GetTiming();
+		time_t getTiming();
 
 
 	private:	// member vars

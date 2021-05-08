@@ -76,8 +76,8 @@ Args::Args(int argc,
 	m_strCopyrightOwner = strCopyrightOwner;
 	m_strCopyrightYear = strCopyrightYear;
 	m_strEMailAddressForBugs = strEMailAddressForBugs;
-	m_IsTargetPresent = false; 
-	m_IsInitialized = false;
+	m_isTargetPresent = false; 
+	m_isInitialized = false;
 }
 
 
@@ -129,8 +129,8 @@ Args::Args(int argc,
 	m_strCopyrightOwner = strCopyrightOwner;
 	m_strCopyrightYear = strCopyrightYear;
 	m_strEMailAddressForBugs = strEMailAddressForBugs;
-	m_IsTargetPresent = false; 
-	m_IsInitialized = false;
+	m_isTargetPresent = false; 
+	m_isInitialized = false;
 
 }
 
@@ -143,32 +143,32 @@ Args::~Args()
 
 //------------------------------------------------------------------------------
 //
-// Function       : Args::Initialize
+// Function       : Args::addDefaults
 //
 // Return type    : void 
 //
-// Description    : 
+// Description    : Adds default args to the program (i.e. help, usage, version, info)
 //
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void Args::Initialize()
+void Args::addDefaults()
 {
 	// specify default common args
-	this->Add("help",	 Arg::NOARG, "Display this help message (and then exit).");
-	this->Add("usage",	 Arg::NOARG, "Display usage instructions (and then exit).");
-	this->Add("version", Arg::NOARG, "Display version information (and then exit).");
-	this->Add("info", Arg::NOARG, "Display information about this executable (and then exit).");
+	this->add("help",	 Arg::NOARG, "Display this help message (and then exit).");
+	this->add("usage",	 Arg::NOARG, "Display usage instructions (and then exit).");
+	this->add("version", Arg::NOARG, "Display version information (and then exit).");
+	this->add("info", Arg::NOARG, "Display information about this executable (and then exit).");
 
 	// add default aliases
-	this->AddAlias("help", '?');
-	this->AddAlias("help", 'h');
-	this->AddAlias("usage", 'u');
-	this->AddAlias("version", 'v');
-	this->AddAlias("info", 'i');
+	this->addAlias("help", '?');
+	this->addAlias("help", 'h');
+	this->addAlias("usage", 'u');
+	this->addAlias("version", 'v');
+	this->addAlias("info", 'i');
 
 	// flag that we've initialized ourselves
-	m_IsInitialized = true; 
+	m_isInitialized = true; 
 
 	return;
 }
@@ -198,21 +198,21 @@ void Args::Initialize()
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::Add(const string& strSwitch, const Arg::type_t ArgType, const string& strDescription, bool IsValueRequired /*= false*/, string strValueHint /*= ""*/, bool IsMandatory /*= false*/, bool IsCaseSensitive /*= true*/)
+bool Args::add(const string& strSwitch, const Arg::type_t ArgType, const string& strDescription, bool IsValueRequired /*= false*/, string strValueHint /*= ""*/, bool IsMandatory /*= false*/, bool IsCaseSensitive /*= true*/)
 {
 	// create an arg instance
 	Arg arg(strSwitch, ArgType, strDescription, IsValueRequired, strValueHint, IsMandatory, IsCaseSensitive); 
 	
 	// add it to our internal list of args
-	pair<arg_list_t::iterator, bool> nRetVal = m_ArgList.insert(make_pair(strSwitch, arg));
+	pair<arg_list_t::iterator, bool> nRetVal = m_argList.insert(make_pair(strSwitch, arg));
 	return nRetVal.second;
 }
 
 
 
-bool Args::Parse(/*inout*/ string& strInvalidOption)
+bool Args::parse(/*inout*/ string& strInvalidOption)
 {
-	if (this->Parse())
+	if (this->parse())
 	{
 		return true; 
 	}
@@ -236,7 +236,7 @@ bool Args::Parse(/*inout*/ string& strInvalidOption)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::Parse()
+bool Args::parse()
 {
 	Arg* pArg = NULL; 
 
@@ -252,13 +252,13 @@ bool Args::Parse()
 			pch++;
 			assert((pch != NULL) || (*pch != '\0')); 
 			assert(isalpha(*pch));
-			assert(strings::IsValidString(pch));
+			assert(strings::isValidString(pch));
 
 			// check if they're specifying the switch and value together - e.g. --switch=value
 			char* szValue = ::strchr(pch, '='); 
 			if (szValue != NULL)
 			{
-				if (!strings::IsValidString(szValue + 1))
+				if (!strings::isValidString(szValue + 1))
 				{
 					// nothing after the '='
 					m_strInvalidArgv = m_argv[i];
@@ -276,27 +276,27 @@ bool Args::Parse()
 			}
 
 			// locate the arg & 
-			arg_list_t::iterator iter = m_ArgList.find(pch);
-			if (iter != m_ArgList.end())
+			arg_list_t::iterator iter = m_argList.find(pch);
+			if (iter != m_argList.end())
 			{
 				IsExpectedParam = true; 
 
 				pArg = &(iter->second); 
-				pArg->SetPresent(true);
+				pArg->setPresent(true);
 
 				if (szValue != NULL)
 				{
 					// set value
-					if (pArg->GetType() == Arg::INTEGER)
+					if (pArg->getType() == Arg::INTEGER)
 					{
-						pArg->SetNumericValue(::atoi(szValue));
+						pArg->setNumericValue(::atoi(szValue));
 					}
-					else if (pArg->GetType() == Arg::STRING)
+					else if (pArg->getType() == Arg::STRING)
 					{
-						pArg->SetStringValue(szValue);
+						pArg->setStringValue(szValue);
 					}
 					
-					pArg->SetValueSupplied(true);
+					pArg->setValueSupplied(true);
 					IsValueAlreadySet = true; 
 				}
 			}
@@ -316,24 +316,24 @@ bool Args::Parse()
 					char szSwitch[2] = ""; 
 					szSwitch[0] = *pch;
 					szSwitch[1] = '\0';
-					arg_list_t::iterator iter = m_ArgList.find(szSwitch);
+					arg_list_t::iterator iter = m_argList.find(szSwitch);
 
-					if (iter == m_ArgList.end())
+					if (iter == m_argList.end())
 					{
 						// check aliases
-						alias_list_t::iterator alias_iter = m_AliasList.find(*pch);
-						if (alias_iter != m_AliasList.end())
+						alias_list_t::iterator alias_iter = m_aliasList.find(*pch);
+						if (alias_iter != m_aliasList.end())
 						{
-							iter = m_ArgList.find(alias_iter->second);
+							iter = m_argList.find(alias_iter->second);
 						}
 					}
 					
-					if (iter != m_ArgList.end())
+					if (iter != m_argList.end())
 					{
 						IsExpectedParam = true; 
 
 						pArg = &(iter->second); 
-						pArg->SetPresent(true);
+						pArg->setPresent(true);
 					}
 					else
 					{
@@ -348,7 +348,7 @@ bool Args::Parse()
 
 		if (IsExpectedParam)
 		{
-			if ((pArg->IsValueRequired() || pArg->IsValueOptional()) && !IsValueAlreadySet)
+			if ((pArg->isValueRequired() || pArg->isValueOptional()) && !IsValueAlreadySet)
 			{
 				// process possible value
 				if ( ((i + 1) < m_argc) && !((*m_argv[i + 1] == '-') || (*m_argv[i + 1] == '/')) )
@@ -357,21 +357,21 @@ bool Args::Parse()
 
 					if (pArg != NULL)
 					{
-						if (pArg->GetType() == Arg::INTEGER)
+						if (pArg->getType() == Arg::INTEGER)
 						{
-							pArg->SetNumericValue(::atoi(m_argv[i]));
+							pArg->setNumericValue(::atoi(m_argv[i]));
 						}
-						else if (pArg->GetType() == Arg::STRING)
+						else if (pArg->getType() == Arg::STRING)
 						{
-							pArg->SetStringValue(m_argv[i]);
+							pArg->setStringValue(m_argv[i]);
 						}
 						
-						pArg->SetValueSupplied(true);
+						pArg->setValueSupplied(true);
 					}
 				}
 				else
 				{
-					if (pArg->IsValueRequired())
+					if (pArg->isValueRequired())
 					{
 						// we expected a value for this switch but didn't get it
 						m_strInvalidArgv = m_argv[i];
@@ -382,7 +382,7 @@ bool Args::Parse()
 		}
 		else
 		{
-			// this is either an unexpected switch or it could be the target param (which must be last)
+			// this is either an unexpected switch or it could be the target param, which must be the last item on the cmd line
 			if ((*m_argv[i] == '-') || (*m_argv[i] == '/') || ((i + 1) != m_argc))
 			{
 				m_strInvalidArgv = m_argv[i];
@@ -390,7 +390,7 @@ bool Args::Parse()
 			}
 			else
 			{
-				m_IsTargetPresent = true; 
+				m_isTargetPresent = true; 
 				m_strTarget = m_argv[i];
 			}
 
@@ -415,14 +415,14 @@ bool Args::Parse()
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::IsPresent(const string& strSwitch) const
+bool Args::isPresent(const string& strSwitch) const
 {
-	arg_list_t::const_iterator c_iter = m_ArgList.find(strSwitch);
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
 
-	if (c_iter != m_ArgList.end())
+	if (c_iter != m_argList.end())
 	{
 		const Arg& arg = c_iter->second;
-		return (arg.IsPresent());
+		return (arg.isPresent());
 	}
 	else
 	{
@@ -445,12 +445,12 @@ bool Args::IsPresent(const string& strSwitch) const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::IsPresent(const char chAlias) const
+bool Args::isPresent(const char chAlias) const
 {
-	alias_list_t::const_iterator const_iter = m_AliasList.find(chAlias);
-	if (const_iter != m_AliasList.end())
+	alias_list_t::const_iterator const_iter = m_aliasList.find(chAlias);
+	if (const_iter != m_aliasList.end())
 	{
-		return (this->IsPresent(const_iter->second));
+		return (this->isPresent(const_iter->second));
 	}
 	else
 	{
@@ -473,14 +473,14 @@ bool Args::IsPresent(const char chAlias) const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::IsValueSupplied(const string& strSwitch) const
+bool Args::isValueSupplied(const string& strSwitch) const
 {
-	arg_list_t::const_iterator c_iter = m_ArgList.find(strSwitch);
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
 
-	if (c_iter != m_ArgList.end())
+	if (c_iter != m_argList.end())
 	{
 		const Arg& arg = c_iter->second;
-		return (arg.IsValueSupplied());
+		return (arg.isValueSupplied());
 	}
 	else
 	{
@@ -502,12 +502,12 @@ bool Args::IsValueSupplied(const string& strSwitch) const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::IsValueSupplied(const char chAlias) const
+bool Args::isValueSupplied(const char chAlias) const
 {
-	alias_list_t::const_iterator const_iter = m_AliasList.find(chAlias);
-	if (const_iter != m_AliasList.end())
+	alias_list_t::const_iterator const_iter = m_aliasList.find(chAlias);
+	if (const_iter != m_aliasList.end())
 	{
-		return (this->IsValueSupplied(const_iter->second));
+		return (this->isValueSupplied(const_iter->second));
 	}
 	else
 	{
@@ -530,15 +530,15 @@ bool Args::IsValueSupplied(const char chAlias) const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetStringValue(const string& strSwitch) const
+string Args::getStringValue(const string& strSwitch) const
 {
 	string strTmp; 
 
-	arg_list_t::const_iterator c_iter = m_ArgList.find(strSwitch);
-	if (c_iter != m_ArgList.end())
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
+	if (c_iter != m_argList.end())
 	{
 		const Arg& arg = c_iter->second;
-		strTmp = arg.GetStringValue();
+		strTmp = arg.getStringValue();
 	}
 
 	return strTmp; 
@@ -559,15 +559,15 @@ string Args::GetStringValue(const string& strSwitch) const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-long Args::GetNumericValue(const string& strSwitch) const
+long Args::getNumericValue(const string& strSwitch) const
 {
 	long nTmp = -1; 
 	
-	arg_list_t::const_iterator c_iter = m_ArgList.find(strSwitch);
-	if (c_iter != m_ArgList.end())
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
+	if (c_iter != m_argList.end())
 	{
 		const Arg& arg = c_iter->second;
-		nTmp = arg.GetNumericValue();
+		nTmp = arg.getNumericValue();
 	}
 
 	return nTmp; 
@@ -591,9 +591,9 @@ long Args::GetNumericValue(const string& strSwitch) const
 // TODO: Add case-sensitivity to aliases? (, bool IsCaseSensitive /*= true*/)
 //
 //------------------------------------------------------------------------------
-bool Args::AddAlias(const string& strSwitch, const char chAlias)
+bool Args::addAlias(const string& strSwitch, const char chAlias)
 {
-	pair<alias_list_t::iterator, bool> nRetVal = m_AliasList.insert(make_pair(chAlias, strSwitch));
+	pair<alias_list_t::iterator, bool> nRetVal = m_aliasList.insert(make_pair(chAlias, strSwitch));
 	return (nRetVal.second);
 }
 
@@ -609,9 +609,9 @@ bool Args::AddAlias(const string& strSwitch, const char chAlias)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::IsTargetPresent() const
+bool Args::isTargetPresent() const
 {
-	return m_IsTargetPresent; 
+	return m_isTargetPresent; 
 }
 
 
@@ -626,7 +626,7 @@ bool Args::IsTargetPresent() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetTarget() const
+string Args::getTarget() const
 {
 	return m_strTarget;
 }
@@ -644,7 +644,7 @@ string Args::GetTarget() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetInvalidOption() const
+string Args::getInvalidOption() const
 {
 	return m_strInvalidArgv;
 }
@@ -670,7 +670,7 @@ string Args::GetInvalidOption() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetProgramName() const
+string Args::getProgramName() const
 {
 	return m_strProgramName;
 }
@@ -688,7 +688,7 @@ string Args::GetProgramName() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetProgramDescription() const
+string Args::getProgramDescription() const
 {
 	return m_strProgramDesc;
 }
@@ -706,7 +706,7 @@ string Args::GetProgramDescription() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetVersion() const
+string Args::getVersion() const
 {
 	return m_strVersion;
 }
@@ -724,19 +724,19 @@ string Args::GetVersion() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetUsage() const
+string Args::getUsage() const
 {
 	string strUsage = "Usage: \n\n ";
-	strUsage += this->GetProgramName();
+	strUsage += this->getProgramName();
 
 	
 	strUsage += " ";
 
 	// has the user specified any args or did we specify our default args or has the use (i.e. 4 -?, -h, -v, -u)
-	if ((m_IsInitialized && m_AliasList.size() > 4) || (!m_IsInitialized && !m_AliasList.empty()))
+	if ((m_isInitialized && m_aliasList.size() > 4) || (!m_isInitialized && !m_aliasList.empty()))
 	{
 		strUsage += "[-";
-		for (alias_list_t::const_iterator iter = m_AliasList.begin(); iter != m_AliasList.end(); ++iter)
+		for (alias_list_t::const_iterator iter = m_aliasList.begin(); iter != m_aliasList.end(); ++iter)
 		{
 			// exclude '?' as an option, as well as the other default options - i.e. -h, -u and -v
 			if ((iter->first != '?') && (iter->first != 'h') && (iter->first != 'u') && (iter->first != 'v')&& (iter->first != 'i'))
@@ -748,31 +748,31 @@ string Args::GetUsage() const
 	}
 
 	// display each switch
-	for (arg_list_t::const_iterator iter = m_ArgList.begin(); iter != m_ArgList.end(); ++iter)
+	for (arg_list_t::const_iterator iter = m_argList.begin(); iter != m_argList.end(); ++iter)
 	{
 		const Arg* pArg = &(iter->second); 
 
 		// exclude --help, --usage and --version switches from general usage list
-		if ((pArg->GetSwitch() != "help") && (pArg->GetSwitch() != "usage") && (pArg->GetSwitch() != "version") && (pArg->GetSwitch() != "info"))
+		if ((pArg->getSwitch() != "help") && (pArg->getSwitch() != "usage") && (pArg->getSwitch() != "version") && (pArg->getSwitch() != "info"))
 		{
 			// optional switches are enclosed in solid braces
-			if (!pArg->IsMandatory())
+			if (!pArg->isMandatory())
 			{
 				strUsage += "[";
 			}
 			
 			strUsage += "--";
-			strUsage += pArg->GetSwitch();
+			strUsage += pArg->getSwitch();
 
-			if (pArg->IsValueRequired())
+			if (pArg->isValueRequired())
 			{
 				strUsage += "=";
 
-				if (pArg->GetValueHint().size() > 0)
+				if (pArg->getValueHint().size() > 0)
 				{
-					strUsage += pArg->GetValueHint();
+					strUsage += pArg->getValueHint();
 				}
-				else if (pArg->GetType() == Arg::INTEGER || pArg->GetType() == Arg::DOUBLE)
+				else if (pArg->getType() == Arg::INTEGER || pArg->getType() == Arg::DOUBLE)
 				{
 					strUsage += "n";
 				}
@@ -782,7 +782,7 @@ string Args::GetUsage() const
 				}
 			}
 		
-			if (!pArg->IsMandatory())
+			if (!pArg->isMandatory())
 			{
 				strUsage += "]";
 			}
@@ -792,7 +792,7 @@ string Args::GetUsage() const
 	}
 
 	// add this bit for those cli commands that have a target operand
-	if (m_IsTargetPresent)
+	if (m_isTargetPresent)
 	{
 		strUsage += "<target>";
 	}
@@ -813,7 +813,7 @@ string Args::GetUsage() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetCopyrightNotice() const
+string Args::getCopyrightNotice() const
 {
 	string strCopyrightNotice;
 	
@@ -843,7 +843,7 @@ string Args::GetCopyrightNotice() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetBugReportingInstructions() const
+string Args::getBugReportingInstructions() const
 {
 	string strBugReportingInstructions; 
 
@@ -869,7 +869,7 @@ string Args::GetBugReportingInstructions() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetOptionsDescriptions() const
+string Args::getOptionsDescriptions() const
 {
 	string strOptions = "Options:\n\n";
 	
@@ -895,7 +895,7 @@ string Args::GetOptionsDescriptions() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-string Args::GetInfo() const
+string Args::getProgramInfo() const
 {
 	return m_strInfo;
 }
@@ -915,7 +915,7 @@ string Args::GetInfo() const
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void Args::AddInfo(const string& strInfo)
+void Args::addProgramInfo(const string& strInfo)
 {
 	if (!m_strInfo.empty())
 	{
@@ -937,22 +937,22 @@ void Args::AddInfo(const string& strInfo)
 
 Args::iterator Args::begin()
 {
-	return m_ArgList.begin();
+	return m_argList.begin();
 }
 
 Args::const_iterator Args::begin() const
 {
-	return m_ArgList.begin();
+	return m_argList.begin();
 }
 
 Args::iterator Args::end()
 {
-	return m_ArgList.end();
+	return m_argList.end();
 }
 
 Args::const_iterator Args::end() const
 {
-	return m_ArgList.end();
+	return m_argList.end();
 }
 
 
@@ -976,7 +976,7 @@ std::ostream& espresso::operator<<(std::ostream& os, const Args& args)
 		Arg arg = citer->second;
 
 		// find any aliases - have to manually search the list (map)
-		for (Args::alias_list_t::const_iterator alias_iter = args.m_AliasList.begin(); alias_iter != args.m_AliasList.end(); ++alias_iter)
+		for (Args::alias_list_t::const_iterator alias_iter = args.m_aliasList.begin(); alias_iter != args.m_aliasList.end(); ++alias_iter)
 		{
 			if (citer->first.compare(alias_iter->second) == 0)
 			{

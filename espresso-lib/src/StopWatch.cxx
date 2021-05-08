@@ -25,7 +25,7 @@ using namespace std;
 
 StopWatch::StopWatch()
 {
-	this->Reset();
+	this->reset();
 }
 
 
@@ -34,14 +34,14 @@ StopWatch::~StopWatch()
 }
 
 
-time_t StopWatch::Start()
+time_t StopWatch::start()
 {
 	m_nStartTime = ::time(NULL);
 	return m_nStartTime;
 }
 
 		
-time_t StopWatch::Stop()
+time_t StopWatch::stop()
 {
 	m_nFinishTime = ::time(NULL);
 	m_nTiming += (m_nFinishTime - m_nStartTime);
@@ -49,7 +49,7 @@ time_t StopWatch::Stop()
 }
 
 
-void StopWatch::Reset()
+void StopWatch::reset()
 {
 	m_nStartTime = 0;
 	m_nFinishTime = 0;
@@ -57,14 +57,14 @@ void StopWatch::Reset()
 }
 
 
-time_t StopWatch::Lap()
+time_t StopWatch::lap()
 {
 	time_t m_LapTime = ::time(NULL);
 	return (m_LapTime - m_nStartTime);
 }
 
 
-time_t StopWatch::GetTiming()
+time_t StopWatch::getTiming()
 {
 	return m_nTiming;
 }

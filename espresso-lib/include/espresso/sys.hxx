@@ -31,7 +31,7 @@ namespace espresso
 
 	public:
 
-		static string GetBuildVersion();
+		static string getBuildVersion();
 
 	};
 }

@@ -44,9 +44,9 @@ namespace espresso
 
 	public:	// public interface
 
-		static tid_t GetCurrentThreadID(); 
+		static tid_t getCurrentThreadID(); 
 
-		static void Wait(long nNumMillisecs);
+		static void wait(long nNumMillisecs);
 
 	};
 

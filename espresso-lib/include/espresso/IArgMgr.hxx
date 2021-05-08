@@ -30,16 +30,16 @@ struct IArgMgr
 	virtual ~IArgMgr() {};
 
 	// automatic arg parsing & default handling
-	virtual int ParseAndProcessArgs(Args& args) = 0; 
+	virtual int parseAndProcessArgs(Args& args) = 0; 
 
 	// event handlers
-	virtual void OnRequestHelp(const Args& args) = 0;
-	virtual void OnRequestUsage(const Args& args) = 0;
-	virtual void OnRequestVersion(const Args& args) = 0;
-	virtual void OnRequestInfo(const Args& args) = 0;
+	virtual void onRequestHelp(const Args& args) = 0;
+	virtual void onRequestUsage(const Args& args) = 0;
+	virtual void onRequestVersion(const Args& args) = 0;
+	virtual void onRequestInfo(const Args& args) = 0;
 
 	// ??
-	virtual void OnArgError(const Args& args) = 0;
+	virtual void onArgError(const Args& args) = 0;
 };
 
 

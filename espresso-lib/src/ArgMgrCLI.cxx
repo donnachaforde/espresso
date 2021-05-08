@@ -73,17 +73,17 @@ ArgMgrCLI::~ArgMgrCLI()
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgrCLI::OnRequestHelp(const Args& args)
+void ArgMgrCLI::onRequestHelp(const Args& args)
 {
 	cout															<< endl
-		 << args.GetProgramDescription()							<< endl
+		 << args.getProgramDescription()							<< endl
 																	<< endl 
-		 << args.GetUsage()											<< endl
+		 << args.getUsage()											<< endl
 																	<< endl 
-		 << args.GetOptionsDescriptions()							<< endl
+		 << args.getOptionsDescriptions()							<< endl
 																	<< endl
-		 << args.GetCopyrightNotice()								<< endl
-		 << args.GetBugReportingInstructions()						<< endl;
+		 << args.getCopyrightNotice()								<< endl
+		 << args.getBugReportingInstructions()						<< endl;
 
 	return;
 }
@@ -103,11 +103,11 @@ void ArgMgrCLI::OnRequestHelp(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgrCLI::OnRequestUsage(const Args& args)
+void ArgMgrCLI::onRequestUsage(const Args& args)
 {
-	cout << args.GetUsage()											<< endl
+	cout << args.getUsage()											<< endl
 																	<< endl 
-		 << args.GetCopyrightNotice()								<< endl;
+		 << args.getCopyrightNotice()								<< endl;
 
 	return;
 }
@@ -127,10 +127,10 @@ void ArgMgrCLI::OnRequestUsage(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgrCLI::OnRequestVersion(const Args& args)
+void ArgMgrCLI::onRequestVersion(const Args& args)
 {
-	cout << args.GetProgramName() << " " << args.GetVersion()		<< endl 
-		 << args.GetCopyrightNotice()								<< endl;
+	cout << args.getProgramName() << " " << args.getVersion()		<< endl 
+		 << args.getCopyrightNotice()								<< endl;
 
 	return;
 }
@@ -154,10 +154,10 @@ void ArgMgrCLI::OnRequestVersion(const Args& args)
 //
 //
 //------------------------------------------------------------------------------
-void ArgMgrCLI::OnRequestInfo(const Args& args)
+void ArgMgrCLI::onRequestInfo(const Args& args)
 {
 	cout																			<< endl
-		 << args.GetProgramName() << " " << args.GetVersion()						/*<< endl */
+		 << args.getProgramName() << " " << args.getVersion()						/*<< endl */
 //																					<< endl
 //		 << "Compiled: " << __TIME__ << " " << __DATE__								<< endl
 
@@ -169,17 +169,17 @@ void ArgMgrCLI::OnRequestInfo(const Args& args)
 																					<< endl;
 
 
-	string strInfo = args.GetInfo();
+	string strInfo = args.getProgramInfo();
 	if (!strInfo.empty())
 	{
 		cout << strInfo																<< endl;
 	}
 
-	cout << "Built with the espresso library Version " << sys::GetBuildVersion()
+	cout << "Built with the espresso library Version " << sys::getBuildVersion()
 		 << " - compiled at " << __TIME__ << " " << __DATE__ << "."					<< endl
 																					<< endl
-		 << args.GetCopyrightNotice()												<< endl
-		 << args.GetBugReportingInstructions()										<< endl;
+		 << args.getCopyrightNotice()												<< endl
+		 << args.getBugReportingInstructions()										<< endl;
 
 	return;
 }
@@ -187,15 +187,15 @@ void ArgMgrCLI::OnRequestInfo(const Args& args)
 
 
 
-int ArgMgrCLI::ParseAndProcessArgs(Args& args)
+int ArgMgrCLI::parseAndProcessArgs(Args& args)
 {
 	// use default handling of default args 
-	int nRetVal = ArgMgr::ParseAndProcessArgs(args);
+	int nRetVal = ArgMgr::parseAndProcessArgs(args);
 
 	// report if it didn't work
 	if (nRetVal == -1)
 	{
-		cout << "ERROR: Invalid option: '" << args.GetInvalidOption() << "'. Use --help for option information." << endl;
+		cout << "ERROR: Invalid option: '" << args.getInvalidOption() << "'. Use --help for option information." << endl;
 	}
 
 	return nRetVal;
@@ -215,11 +215,11 @@ int ArgMgrCLI::ParseAndProcessArgs(Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgrCLI::OnArgError(const Args& args)
+void ArgMgrCLI::onArgError(const Args& args)
 {
-	cout << args.GetUsage()											<< endl
+	cout << args.getUsage()											<< endl
 																	<< endl 
-		 << args.GetCopyrightNotice()								<< endl;
+		 << args.getCopyrightNotice()								<< endl;
 
 	return;
 }

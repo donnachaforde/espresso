@@ -62,52 +62,52 @@ public:		// operators
 
 public:		// accessors
 
-	type_t GetType() const;
+	type_t getType() const;
 
-	string GetStringValue() const; 
+	string getStringValue() const; 
 
-	string GetDescription() const; 
+	string getDescription() const; 
 
-	string GetSwitch() const;
+	string getSwitch() const;
 	
-	string GetValueHint() const;
+	string getValueHint() const;
 
-	long GetNumericValue() const; 
+	long getNumericValue() const; 
 
-	bool IsMandatory() const; 
+	bool isMandatory() const; 
 
-	bool IsPresent() const;
+	bool isPresent() const;
 
-	bool IsCaseSensitive() const; 
+	bool isCaseSensitive() const; 
 
-	bool IsValueRequired() const;
+	bool isValueRequired() const;
 	
-	bool IsValueOptional() const;
+	bool isValueOptional() const;
 
-	bool IsValueSupplied() const;
+	bool isValueSupplied() const;
 
 
 private:	// modifiers
 
-	void SetSwitch(const string& strSwitch);
+	void setSwitch(const string& strSwitch);
 
-	void SetArgType(const type_t ArgType);
+	void setArgType(const type_t ArgType);
 
-	void SetStringValue(const string& strValue); 
+	void setStringValue(const string& strValue); 
 
-	void SetDescription(const string& strDescription); 
+	void setDescription(const string& strDescription); 
 
-	void SetNumericValue(const long nValue); 
+	void setNumericValue(const long nValue); 
 	
-	void SetMandatory(const bool IsMandatory); 
+	void setMandatory(const bool IsMandatory); 
 
-	void SetPresent(const bool IsPresent);
+	void setPresent(const bool IsPresent);
 
-	void SetCaseSensitive(const bool IsCaseSensitive); 
+	void setCaseSensitive(const bool IsCaseSensitive); 
 
-	void SetValueRequired(const bool IsValueRequired); 
+	void setValueRequired(const bool IsValueRequired); 
 
-	void SetValueSupplied(bool IsValueSupplied);
+	void setValueSupplied(bool IsValueSupplied);
 
 
 private:	// member vars
@@ -117,7 +117,7 @@ private:	// member vars
 	string m_strSwitch;
 
 	// type of arg
-	type_t m_ArgType;
+	type_t m_argType;
 					
 	// flag description
 	string m_strDescription;
@@ -132,18 +132,18 @@ private:	// member vars
 	long m_nValue;
 	
 	// does this switch require a value
-	bool m_IsValueRequired; 
+	bool m_isValueRequired; 
 	
 	// is it a manadory argument
-	bool m_IsMandatory;
+	bool m_isMandatory;
 	
 	// indicates whether the flag is case sensitive or not
-	bool m_IsCaseSensitive; //???
+	bool m_isCaseSensitive; //???
 	
 	// is the arg present? (in the arg list)
-	bool m_IsPresent;
+	bool m_isPresent;
 
-	bool m_IsValueSupplied; 
+	bool m_isValueSupplied; 
 
 };
 

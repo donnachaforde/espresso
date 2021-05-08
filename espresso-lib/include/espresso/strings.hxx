@@ -32,9 +32,9 @@ namespace espresso
 
 	public:
 
-		static bool IsValidString(const char* szCandidate, unsigned long nMaxSize = 0);
+		static bool isValidString(const char* szCandidate, unsigned long nMaxSize = 0);
 	
-		static bool IsValidString(string strCandidate, unsigned long nMaxSize = 0);
+		static bool isValidString(string strCandidate, unsigned long nMaxSize = 0);
 	};
 
 }
