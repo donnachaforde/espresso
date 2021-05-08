@@ -54,7 +54,9 @@ The makefile is pretty trivial but works. Plans are afoot to adopt CMake.
 
 ***
 ## Examples
-Check out [Espresso Tools](https://github.com/donnachaforde/espresso-tools) for example code that uses Espresso lib. 
+Check out [Espresso Tools](https://github.com/donnachaforde/espresso-tools) for example code that uses Espresso lib. There is also a [Developer Guide](espresso-lib/docs/Developer%20Guide.md) that mas more info on how to use the library to get you up and running quicky. 
+
+Finally, there's a [Blog](espresso-lib/docs/Blog.md) where I try to capture thoughts on design as the solution evolves. 
 
 ***
 
