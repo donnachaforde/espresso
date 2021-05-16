@@ -1,4 +1,4 @@
-# Developer Guide - espresso lib 
+# Developer's Guide - espresso lib 
 Additional info about using the espresso library. 
 
 ***
