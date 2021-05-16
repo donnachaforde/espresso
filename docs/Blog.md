@@ -44,7 +44,7 @@ Years later, when working with Java and learning about Spring's Inversion of Con
 ***
 ## Style, Conventions and External Influences
 
-When I first devised the espresso library, I was strongly influenced by the Visual C++ naming conventions, using camelCase with a leading capital letter. I always thought this more aesthically pleasing that the use of underscores in names.
+When I first devised the espresso library, I was strongly influenced by the Visual C++ naming conventions, using camelCase with a leading capital letter. I always thought this more aesthetically pleasing that the use of underscores in names.
 
 However, after years and years of Java programming, I came round to having a preference for camelCase 'without' the leading uppercase letter. I tend to use a 'light' version of Hungarian notation so I found my new preference to be compatible with this. 
 
