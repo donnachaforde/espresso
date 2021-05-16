@@ -4,13 +4,14 @@ A small C++ library for developing CLI tools easily and quickly.
 ***
 ## Introduction
 
-Have you ever had a good idea for a CLI tool you want to develop in C++ but found yourself somewhat hindered by having to provide support for command-line arguments? If so, **espresso** can alleviate the overhead of managing command-line options, help and versioning output and thereby, free you up to concentrate on solving your utility. 
+Ever had a good idea for a tool command or utility, made a start but then found yourself getting distracted coping with options at the command-line?
+
+If so, **espresso** can alleviate that overhead by taking care of command-line options, help and versioning output and free you up to concentrate on solving your utility. 
 
 The key features are:
-* A clear and simple API to define the arguments/switches supported by your utility. 
-* Parse the arglist and provide syntax checking to ensure the correct params are being provided.
-* Provide basic help and info messages about your CLI tool. 
-* Provide an easy way to report version info.
+* A clear and simple API to define the arguments/switches your tool supports. 
+* Automatic parsing of the arglist and syntax checking to ensure the correct params are being provided.
+* Provision of common default args, such as --help, --version, etc. 
 
 
 
@@ -34,7 +35,7 @@ What platforms are supported?
 * macOS (gcc)
 
 
-Previously, the following platforms were supported for *gcc*. They haven't been exercised in recent years but there's every chance the makefile will still work. 
+Previously, the following platforms were supported for *gcc*. They haven't been exercised recently but there's every chance the makefile will still work. 
 
 * Solaris SunOS
 * AIX
