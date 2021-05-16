@@ -19,14 +19,7 @@
 #include <Args.hxx>
 using namespace espresso;
 
-//#include <iostream>
-/*
-#include <ostream>
-#include <strstream>
-#include <iomanip>
-#include <utility>
-#include <cassert>
-*/
+
 using namespace std; 
 
 
@@ -40,7 +33,12 @@ using namespace std;
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-ArgMgr::ArgMgr()
+//ArgMgr::ArgMgr()
+//{
+//	this->m_argRenderer
+//}
+
+ArgMgr::ArgMgr(IArgRenderer& argRenderer) : m_argRenderer(argRenderer)
 {
 }
 
@@ -74,6 +72,7 @@ ArgMgr::~ArgMgr()
 //------------------------------------------------------------------------------
 void ArgMgr::onRequestHelp(const Args& args)
 {
+	m_argRenderer.onRequestHelp(args);
 }
 
 
@@ -92,6 +91,7 @@ void ArgMgr::onRequestHelp(const Args& args)
 //------------------------------------------------------------------------------
 void ArgMgr::onRequestUsage(const Args& args)
 {
+	m_argRenderer.onRequestUsage(args);
 }
 
 
@@ -110,6 +110,7 @@ void ArgMgr::onRequestUsage(const Args& args)
 //------------------------------------------------------------------------------
 void ArgMgr::onRequestVersion(const Args& args)
 {
+	m_argRenderer.onRequestVersion(args);
 }
 
 
@@ -128,9 +129,28 @@ void ArgMgr::onRequestVersion(const Args& args)
 //------------------------------------------------------------------------------
 void ArgMgr::onRequestInfo(const Args& args)
 {
+	m_argRenderer.onRequestInfo(args);
 }
 
 
+
+//------------------------------------------------------------------------------
+//
+// Function       : ArgMgr::OnArgError
+//
+// Return type    : void 
+//
+// Argument       : const Args& args
+//
+// Description    : 
+//
+// Notes          : 
+//
+//------------------------------------------------------------------------------
+void ArgMgr::onArgError(const Args& args)
+{
+	m_argRenderer.onRequestInfo(args);
+}
 
 
 
@@ -198,19 +218,3 @@ int ArgMgr::parseAndProcessArgs(Args& args)
 
 
 
-//------------------------------------------------------------------------------
-//
-// Function       : ArgMgr::OnArgError
-//
-// Return type    : void 
-//
-// Argument       : const Args& args
-//
-// Description    : 
-//
-// Notes          : 
-//
-//------------------------------------------------------------------------------
-void ArgMgr::onArgError(const Args& args)
-{
-}

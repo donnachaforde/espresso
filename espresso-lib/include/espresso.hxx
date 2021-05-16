@@ -75,10 +75,15 @@ namespace espresso {}
 
 
 #ifndef INCLUDED_ESPRESSO_ARGMGRCLI_HXX
-#include <espresso/ArgMgrCLI.hxx>
+#include <espresso/ArgMgr.hxx>
 #define INCLUDED_ESPRESSO_ARGMGRCLI_HXX
 #endif
 
+
+#ifndef INCLUDED_ESPRESSO_STDOUTARGRENDERER_HXX
+#include <espresso/StdoutArgRenderer.hxx>
+#define ININCLUDED_ESPRESSO_STDOUTARGRENDERER_HXX
+#endif
 
 
 #ifndef INCLUDED_ESPRESSO_STRINGS_HXX

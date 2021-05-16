@@ -21,6 +21,7 @@
 
 
 #include "IArgMgr.hxx"
+#include "IArgRenderer.hxx"
 
 
 
@@ -31,7 +32,8 @@ namespace espresso
 class ArgMgr : public IArgMgr
 {
 public:
-	ArgMgr();
+	//ArgMgr();
+	ArgMgr(IArgRenderer& argRenderer);
 	virtual ~ArgMgr();
 
 private:
@@ -53,7 +55,37 @@ public:
 	virtual void onRequestInfo(const Args& args);
 	
 	virtual void onArgError(const Args& args);
+
+private:
+	
+	// our output renderer
+	IArgRenderer& m_argRenderer; 
+
 };
+
+/*
+class AgrManagerFactory
+{
+
+
+private:
+	AgrManagerFactory();
+	virtual ~AgrManagerFactory();
+	AgrManagerFactory(const AgrManagerFactory& rhs);
+	AgrManagerFactory& operator=(const AgrManagerFactory& rhs);
+
+
+public:
+	ArgMgr createInstance()
+	{
+		StdoutArgRenderer stdoutArgRenderer;
+		ArgMgr argMgr(stdoutArgRenderer);
+
+		return argMgr;
+	}
+
+};
+*/
 
 
 } // end-namespace

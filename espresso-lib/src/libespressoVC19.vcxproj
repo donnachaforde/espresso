@@ -211,18 +211,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="ArgMgrCLI.cxx">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MaxSpeed</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BrowseInformation>
-    </ClCompile>
+    <ClCompile Include="StdoutArgRenderer.cxx" />
     <ClCompile Include="Args.cxx">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
@@ -263,6 +252,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BrowseInformation>
     </ClCompile>
+    <ClCompile Include="IArgRenderer.cxx" />
     <ClCompile Include="stdhdr.cxx">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
@@ -334,9 +324,10 @@
     <ClInclude Include="..\include\espresso.hxx" />
     <ClInclude Include="..\include\espresso\Arg.hxx" />
     <ClInclude Include="..\include\espresso\ArgMgr.hxx" />
-    <ClInclude Include="..\include\espresso\ArgMgrCLI.hxx" />
+    <ClInclude Include="..\include\espresso\StdoutArgRenderer.hxx" />
     <ClInclude Include="..\include\espresso\Args.hxx" />
     <ClInclude Include="..\include\espresso\IArgMgr.hxx" />
+    <ClInclude Include="..\include\espresso\IArgRenderer.hxx" />
     <ClInclude Include="..\include\espresso\StopWatch.hxx" />
     <ClInclude Include="..\include\espresso\strings.hxx" />
     <ClInclude Include="..\include\espresso\sys.hxx" />
