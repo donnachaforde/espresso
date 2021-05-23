@@ -79,6 +79,11 @@ namespace espresso {}
 #define INCLUDED_ESPRESSO_ARGMGRCLI_HXX
 #endif
 
+#ifndef INCLUDED_ESPRESSO_ARGMANAGERFACTORY_HXX
+#include <espresso/ArgManagerFactory.hxx>
+#define INCLUDED_ESPRESSO_ARGMANAGERFACTORY_HXX
+#endif
+
 
 #ifndef INCLUDED_ESPRESSO_STDOUTARGRENDERER_HXX
 #include <espresso/StdoutArgRenderer.hxx>

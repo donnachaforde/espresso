@@ -29,15 +29,18 @@ namespace espresso
 {
 
 
-class ArgMgr : public IArgMgr
+class ArgMgr
 {
 public:
-	//ArgMgr();
+
 	ArgMgr(IArgRenderer& argRenderer);
-	virtual ~ArgMgr();
+	~ArgMgr();
+
+	// copy ctor
+	ArgMgr(const ArgMgr& rhs);
+
 
 private:
-	ArgMgr(const ArgMgr& rhs);
 	ArgMgr& operator=(const ArgMgr& rhs);
 
 public:
@@ -62,30 +65,6 @@ private:
 	IArgRenderer& m_argRenderer; 
 
 };
-
-/*
-class AgrManagerFactory
-{
-
-
-private:
-	AgrManagerFactory();
-	virtual ~AgrManagerFactory();
-	AgrManagerFactory(const AgrManagerFactory& rhs);
-	AgrManagerFactory& operator=(const AgrManagerFactory& rhs);
-
-
-public:
-	ArgMgr createInstance()
-	{
-		StdoutArgRenderer stdoutArgRenderer;
-		ArgMgr argMgr(stdoutArgRenderer);
-
-		return argMgr;
-	}
-
-};
-*/
 
 
 } // end-namespace
