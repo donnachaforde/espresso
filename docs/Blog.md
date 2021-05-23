@@ -40,6 +40,7 @@ This really challenged my assumptions about the library writing to stdout. I did
 
 Years later, when working with Java and learning about Spring's Inversion of Control (IOC) design pattern, I learnt about the concept of separating function down to it's core parts. For example, I realized that rendering output is quite distinct from argument parsing. This allowed me to provide a stdout renderer as standard but provided a means for another developer to devise a compatible renderer for there environment. 
 
+I detailed the design thought process in a separate article on [construction](Blog-Construction.md). 
 
 ***
 ## Style, Conventions and External Influences
