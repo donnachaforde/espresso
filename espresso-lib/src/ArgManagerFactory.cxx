@@ -45,6 +45,7 @@ using namespace std;
 
 /*static*/ ArgMgr ArgManagerFactory::createInstance(IArgRenderer& argRenderer)
 {
-	ArgMgr argMgr(argRenderer);
+	// the arg manager is a singleton
+	static ArgMgr argMgr(argRenderer);
 	return argMgr;
 }
