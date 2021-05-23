@@ -42,6 +42,11 @@ ArgMgr::ArgMgr(IArgRenderer& argRenderer) : m_argRenderer(argRenderer)
 {
 }
 
+ArgMgr::ArgMgr(const ArgMgr& rhs) : m_argRenderer(rhs.m_argRenderer)
+{
+}
+
+
 
 //------------------------------------------------------------------------------
 //
