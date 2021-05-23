@@ -15,7 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "stdhdr.hxx"
-#include <ArgMgr.hxx>
+#include <ArgManager.hxx>
 #include <Args.hxx>
 using namespace espresso;
 
@@ -38,11 +38,11 @@ using namespace std;
 //	this->m_argRenderer
 //}
 
-ArgMgr::ArgMgr(IArgRenderer& argRenderer) : m_argRenderer(argRenderer)
+ArgManager::ArgManager(IArgRenderer& argRenderer) : m_argRenderer(argRenderer)
 {
 }
 
-ArgMgr::ArgMgr(const ArgMgr& rhs) : m_argRenderer(rhs.m_argRenderer)
+ArgManager::ArgManager(const ArgManager& rhs) : m_argRenderer(rhs.m_argRenderer)
 {
 }
 
@@ -57,7 +57,7 @@ ArgMgr::ArgMgr(const ArgMgr& rhs) : m_argRenderer(rhs.m_argRenderer)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-ArgMgr::~ArgMgr()
+ArgManager::~ArgManager()
 {
 }
 
@@ -75,7 +75,7 @@ ArgMgr::~ArgMgr()
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::onRequestHelp(const Args& args)
+void ArgManager::onRequestHelp(const Args& args)
 {
 	m_argRenderer.onRequestHelp(args);
 }
@@ -94,7 +94,7 @@ void ArgMgr::onRequestHelp(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::onRequestUsage(const Args& args)
+void ArgManager::onRequestUsage(const Args& args)
 {
 	m_argRenderer.onRequestUsage(args);
 }
@@ -113,7 +113,7 @@ void ArgMgr::onRequestUsage(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::onRequestVersion(const Args& args)
+void ArgManager::onRequestVersion(const Args& args)
 {
 	m_argRenderer.onRequestVersion(args);
 }
@@ -132,7 +132,7 @@ void ArgMgr::onRequestVersion(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::onRequestInfo(const Args& args)
+void ArgManager::onRequestInfo(const Args& args)
 {
 	m_argRenderer.onRequestInfo(args);
 }
@@ -152,7 +152,7 @@ void ArgMgr::onRequestInfo(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgMgr::onArgError(const Args& args)
+void ArgManager::onArgError(const Args& args)
 {
 	m_argRenderer.onRequestInfo(args);
 }
@@ -181,7 +181,7 @@ void ArgMgr::onArgError(const Args& args)
 // and test such as if (!ParseAndProcessArgs()) will translate to 'false' when we return -1. 
 //
 //------------------------------------------------------------------------------
-int ArgMgr::parseAndProcessArgs(Args& args)
+int ArgManager::parseAndProcessArgs(Args& args)
 {
 	// parse the arg list
 	if (!args.parse())

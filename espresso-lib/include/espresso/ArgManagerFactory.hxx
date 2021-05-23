@@ -29,7 +29,7 @@ namespace espresso
 {
 
 // forward declaration
-class ArgMgr;
+class ArgManager;
 
 
 class ArgManagerFactory
@@ -45,8 +45,8 @@ private:
 
 public:
 	// create a default instance of an ArgMgr (that uses a stdout renderer)
-	static ArgMgr createInstance();
-	static ArgMgr createInstance(IArgRenderer& argRenderer);
+	static ArgManager createInstance();
+	static ArgManager createInstance(IArgRenderer& argRenderer);
 };
 
 

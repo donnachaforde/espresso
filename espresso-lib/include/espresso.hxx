@@ -74,9 +74,9 @@ namespace espresso {}
 #endif
 
 
-#ifndef INCLUDED_ESPRESSO_ARGMGRCLI_HXX
-#include <espresso/ArgMgr.hxx>
-#define INCLUDED_ESPRESSO_ARGMGRCLI_HXX
+#ifndef INCLUDED_ESPRESSO_ARGMANAGER_HXX
+#include <espresso/ArgManager.hxx>
+#define INCLUDED_ESPRESSO_ARGMANAGER_HXX
 #endif
 
 #ifndef INCLUDED_ESPRESSO_ARGMANAGERFACTORY_HXX

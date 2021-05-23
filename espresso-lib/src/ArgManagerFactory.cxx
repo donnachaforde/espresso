@@ -16,7 +16,7 @@
 
 #include "stdhdr.hxx"
 #include <ArgManagerFactory.hxx>
-#include <ArgMgr.hxx>
+#include <ArgManager.hxx>
 #include <StdoutArgRenderer.hxx>
 using namespace espresso;
 
@@ -36,16 +36,16 @@ using namespace std;
 //------------------------------------------------------------------------------
 
 
-/*static*/ ArgMgr ArgManagerFactory::createInstance()
+/*static*/ ArgManager ArgManagerFactory::createInstance()
 {
 	static StdoutArgRenderer stdoutArgRenderer;
 	return createInstance(stdoutArgRenderer);
 }
 
 
-/*static*/ ArgMgr ArgManagerFactory::createInstance(IArgRenderer& argRenderer)
+/*static*/ ArgManager ArgManagerFactory::createInstance(IArgRenderer& argRenderer)
 {
 	// the arg manager is a singleton
-	static ArgMgr argMgr(argRenderer);
+	static ArgManager argMgr(argRenderer);
 	return argMgr;
 }

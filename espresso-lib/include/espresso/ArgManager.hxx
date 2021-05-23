@@ -14,8 +14,8 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef INCLUDED_ESPRESSO_ARGMGR_HXX
-#define INCLUDED_ESPRESSO_ARGMGR_HXX
+#ifndef INCLUDED_ESPRESSO_ARGMANAGER_HXX
+#define INCLUDED_ESPRESSO_ARGMANAGER_HXX
 
 
 
@@ -29,19 +29,19 @@ namespace espresso
 {
 
 
-class ArgMgr
+class ArgManager
 {
 public:
 
-	ArgMgr(IArgRenderer& argRenderer);
-	~ArgMgr();
+	ArgManager(IArgRenderer& argRenderer);
+	~ArgManager();
 
 	// copy ctor
-	ArgMgr(const ArgMgr& rhs);
+	ArgManager(const ArgManager& rhs);
 
 
 private:
-	ArgMgr& operator=(const ArgMgr& rhs);
+	ArgManager& operator=(const ArgManager& rhs);
 
 public:
 
@@ -72,4 +72,4 @@ private:
 
 
 
-#endif // INCLUDED_ESPRESSO_ARGMGR_HXX
+#endif // INCLUDED_ESPRESSO_ARGMANAGER_HXX
