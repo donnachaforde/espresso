@@ -70,6 +70,9 @@ Shortcut switches are also support as 'aliases'
 
 Next, create an Argument Manager and 'parse' the args. 
 
+	ArgMgr argMgr(args); 
+	argMgr.parseAndProcessArgs(); 
+
 You can interogate the Arg-Manager about args you expect, etc. 
 
 	// check display preferences
