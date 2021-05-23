@@ -38,7 +38,7 @@ When working with C++ and taking an object-oriented approach, there are lots of 
 
 This really challenged my assumptions about the library writing to stdout. I didn't want to limit its scope so I set about catering to this facet - i.e. separating argument parsing logic from writing output to stdout. My initial attempt was to use class inheritance to separate 'common' logic into an abstract base class and pushing the parts leveraging stdout into a concrete class. This succeeded in achieving the design goal but it didn't sit well with me as an elegant solution. 
 
-Years later, when working with Java and learning about Spring's Inversion of Control (IOC) design pattern, I learnt about the concept of separating function down to it's core parts. For example, I realized that rendering out is quite distinct from argument parsing. This allowed me to provide a stdout renderer as standard but provided a means for another developer to devise a compatible renderer for there environment. 
+Years later, when working with Java and learning about Spring's Inversion of Control (IOC) design pattern, I learnt about the concept of separating function down to it's core parts. For example, I realized that rendering output is quite distinct from argument parsing. This allowed me to provide a stdout renderer as standard but provided a means for another developer to devise a compatible renderer for there environment. 
 
 
 ***
