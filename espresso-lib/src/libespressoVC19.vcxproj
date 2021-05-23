@@ -199,6 +199,7 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BrowseInformation>
     </ClCompile>
+    <ClCompile Include="ArgManagerFactory.cxx" />
     <ClCompile Include="ArgMgr.cxx">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
@@ -323,6 +324,7 @@
   <ItemGroup>
     <ClInclude Include="..\include\espresso.hxx" />
     <ClInclude Include="..\include\espresso\Arg.hxx" />
+    <ClInclude Include="..\include\espresso\ArgManagerFactory.hxx" />
     <ClInclude Include="..\include\espresso\ArgMgr.hxx" />
     <ClInclude Include="..\include\espresso\StdoutArgRenderer.hxx" />
     <ClInclude Include="..\include\espresso\Args.hxx" />
