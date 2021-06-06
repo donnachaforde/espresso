@@ -81,9 +81,28 @@ Incidentally, things work when the user explicitly declares the ArgRenderer (as 
 
 My first reaction was that, despite my best efforts, I was going to have to rely on the renderer object being allocated on the heap. I couldn't utilize concrete objects **and** rely on dynamic types at runtime. The ArgMgr class couldn't know the concrete type of the object is was interacting with here. It had to use a pointer or reference in order for that dynamic relationship. In this instance, it's clear that the GC approach deployed in Java provides a greater degree of freedom in facilitating Dynamic Injection (DI) and the Inversion of Control (IoC) pattern. 
 
-
+Frustrated that I was going to be forced to rewrite the code to use dynamically allocated objects (on the heap) and annoyed with all that entailed (See: Item 27 in _More Effective C++ by Scott Meyers_), I left took a break from it. 
 	
 
+### Eureka
+
+I read several books on Developer Productivity and came across many references and examples describing how people had a light-bulb moment while away from the keyboard. 
+
+It occurred to me that I could use the `static` keyword to declare the stdout renderer. 
+
+Because of the way the language has evolved, C++ reuses keywords so last time I checked `static` had 3 distinct uses. But, when used within a function or method, it meant that instance was only created once and never destroyed. 
+
+	ArgMgr ArgManagerFactory::createInstance()
+	{
+		static StdoutArgRenderer stdoutArgRenderer;
+		return createInstance(stdoutArgRenderer);
+	}
+
+Simply declaring the stdoutRenderer static meant the object effectively behaved as though it'd been provided by the user, further up the stack. 
+
+Great! This worked a treat and meant that I was now able to meet my fussy design goals. 
+
+The only annoyance being that I didn't think of it sooner. Then again, I'm a little rusty.... 
 
 ***
 Donnacha Forde - Espresso Library
