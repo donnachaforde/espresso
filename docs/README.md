@@ -42,6 +42,8 @@ Years later, when working with Java and learning about Spring's Inversion of Con
 
 I detailed the design thought process in a separate article on [construction](Blog-Construction.md). 
 
+Another design journey lead me down a track that led to the implementation of the [MVC pattern](Blog-Manager-Object.md). 
+
 ***
 ## Style, Conventions and External Influences
 
