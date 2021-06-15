@@ -57,7 +57,7 @@ The following code was common across all the CLI tools I'd developed:
 	}
 
 
-I really needed somewhere 'common' to put this and decided a 'manager' would do. Later, as I write about in my overview blog, I related this requirement to the need to decouple rendering from the target render type so, in the end, this code was later moved out of the Manager to a dedicated stdout renderer. 
+I really needed somewhere 'common' to put this and decided a 'manager' would do. Later, as I write about in my [overview blog](README.md), I related this requirement to the need to decouple rendering from the target render type so, in the end, this code was later moved out of the Manager to a dedicated stdout renderer. 
 
 
 In shifting parsing duties from the `ArgList` class to the `ArgumentManager`, I also had to address basic error handling and the misuse of command-line arguments. In doing so, I changed the method name from `parse()` to `parseAndProcess()`, which better infers that some processing of the parsed args is going to happen. In general, I find that taking a little care with method/function names is worth the efforts can pay dividends down the line. 
