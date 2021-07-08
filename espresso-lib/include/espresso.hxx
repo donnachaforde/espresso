@@ -44,7 +44,7 @@
 		#pragma warning( disable : 4503 ) // Ignore 'decorated name length exceeded and truncated' (template names can be very long)
 
 		// need to disable these warning with newer, fuzzier compilers, otherwise can't use things like strcpy, sprintf, etc.
-		#pragma message("note : CRT security warning (so we can use ol' fashioned 'C' calls)")
+		#pragma message("note : Supress CRT security warning (so we can use ol' fashioned 'C' calls)")
 		#define _CRT_SECURE_NO_WARNINGS
 
 		#pragma message("note : Suppress warnings about deprecated POSIX function names.")
