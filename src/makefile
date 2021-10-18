@@ -54,13 +54,16 @@ OUTDIR		= lib
 OBJ =  	stdhdr.o \
 		espresso.o \
 		Arg.o \
+		ArgManager.o \
+		ArgManagerFactory.o \
 		Args.o \
 		IArgMgr.o \
-		ArgMgr.o \
-		ArgMgrCLI.o \
+		IArgRenderer.o \
+		StdoutArgRenderer.o \
 		StopWatch.o \
 		strings.o \
 		sys.o \
+		threads.o \
 		time.o 
 
 
