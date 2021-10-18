@@ -44,6 +44,9 @@ Release
 Win32
 x64
 
+# Visual Code
+.vscode
+
 # Jetbrains CLion project directory
 .idea
 
