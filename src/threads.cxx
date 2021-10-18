@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½ 1993-2020, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
@@ -26,6 +26,8 @@ using namespace espresso;
 
 #else	// pthreads
 
+	#include <pthread.h>
+
 #endif
 
 
@@ -33,16 +35,16 @@ using namespace espresso;
 /*static*/ tid_t threads::getCurrentThreadID()
 {
 
-	tid_t nThreadID = -1;
 
 #ifdef WIN32
 
+	tid_t nThreadID = -1;
 	nThreadID = ::GetCurrentThreadId();
 
 #else	// pthreads
 
-
-	nThreadID = ::pthread_self()
+	tid_t nThreadID = (tid_t)-1; 
+	nThreadID = ::pthread_self();
 
 #endif
 

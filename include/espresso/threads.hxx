@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½ 1993-2020, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
@@ -17,6 +17,11 @@
 #ifndef INCLUDED_ESPRESSO_THREADS_HXX
 #define INCLUDED_ESPRESSO_THREADS_HXX
 
+#ifndef WIN32
+	#include <pthread.h>
+#endif
+
+
 
 #ifdef WIN32
 
@@ -24,6 +29,8 @@
 	typedef int tid_t; 
 
 #else	// pthreads
+
+	typedef pthread_t tid_t;
 
 #endif
 
