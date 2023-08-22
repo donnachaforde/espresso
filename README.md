@@ -1,7 +1,7 @@
 # README - espresso lib 
 A small C++ library for developing CLI tools easily and quickly.
 
-***
+
 ## Introduction
 
 Ever had a good idea for a tool command or utility, made a start but then found yourself getting distracted coping with options at the command-line?
@@ -16,7 +16,6 @@ The key features are:
 
 
 
-***
 ## Contents
 
 Whats included?
@@ -25,7 +24,6 @@ Whats included?
 * header files - the espresso C++ header files 
 
 
-***
 ## Supported Platforms
 
 
@@ -45,7 +43,6 @@ Previously, the following platforms were supported for *gcc*. They haven't been 
 The software was originally developed on Windows 32-bit environments but was successfully ported and deployed to Unix/Linux environments. Later, the code was successfully built for x64 environments without issue. While the `makefile` is primitive, it should still work for Unix/Linux environments. Most recently, it has been revised to build on macOS environments. 
 
 
-***
 ## Build Environments
 
 The original visual studio file were created Visual Studio 6.0 (which gives an indication as to the point when this 'tinkering' began) but were later ported to Visual Studio 2003, then Visual Studio 2005 and later Visual Studio 2008. There followed a fallow period before I again became re-acquainted with DevStudio using Visual Studio 2014 and then Visual Studio 2017. Most recently, I've ported to Visual Studio 2019. 
@@ -53,11 +50,11 @@ The original visual studio file were created Visual Studio 6.0 (which gives an i
 The makefile is pretty trivial but works. Plans are afoot to adopt CMake. 
 
 
-***
+
 ## Examples
 Check out [Espresso Tools](https://github.com/donnachaforde/espresso-tools) for example code that uses Espresso lib. There is also a [Developer Guide](docs/Developer-Guide.md) that mas more info on how to use the library to get you up and running quickly. 
 
-Finally, there's a [Blog](docs/README.md) where I try to capture thoughts on design as the solution evolves. 
+Finally, there's a [blog](docs/README.md) where I try to capture thoughts on design as the solution evolves. 
 
 ***
 
