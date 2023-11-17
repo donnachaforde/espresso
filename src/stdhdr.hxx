@@ -3,6 +3,16 @@
 // stdhdr.hxx
 //
 ////////////////////////////////////////////////////////////////////////////////
+//
+// Developed by Donnacha Forde (@DonnachaForde)
+//
+// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+//
+//
+// This software is provided 'as is' without warranty, expressed or implied.
+// Donnacha Forde accepts no responsibility for the use or reliability of this software. 
+// 
+////////////////////////////////////////////////////////////////////////////////// pre-compiled header stub
 
 #ifndef INCLUDED_STDHDR_HXX
 #define INCLUDED_STDHDR_HXX

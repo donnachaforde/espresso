@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright � 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
