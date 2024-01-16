@@ -52,7 +52,7 @@ using namespace espresso;
 	else if ((nMaxSize > 0) && (::strlen(szCandidate) > nMaxSize))		
 	{
 		// user has specified optional param so must 
-		// veryify that string is within range
+		// verify that string is within range
 		return false; 
 	}
 	else
@@ -86,7 +86,7 @@ using namespace espresso;
 	else if ((nMaxSize > 0) && (strCandidate.length() > nMaxSize))		
 	{
 		// user has specified optional param so must 
-		// veryify that string is within range
+		// verify that string is within range
 		return false; 
 	}
 	else
