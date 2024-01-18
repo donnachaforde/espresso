@@ -156,9 +156,9 @@ void Args::addDefaults()
 {
 	// specify default common args
 	this->add("help",	 Arg::NOARG, "Display this help message (and then exit).");
-	this->add("usage",	 Arg::NOARG, "Display usage instructions (and then exit).");
-	this->add("version", Arg::NOARG, "Display version information (and then exit).");
-	this->add("info", Arg::NOARG, "Display information about this executable (and then exit).");
+	this->add("usage",	 Arg::NOARG, "Display usage instructions.");
+	this->add("version", Arg::NOARG, "Display version information.");
+	this->add("info", Arg::NOARG, "Display build information about this executable.");
 
 	// add default aliases
 	this->addAlias("help", '?');
@@ -726,19 +726,27 @@ string Args::getVersion() const
 //------------------------------------------------------------------------------
 string Args::getUsage() const
 {
+	//
+	// exe name
+	//
+
 	string strUsage = "Usage: \n\n ";
 	strUsage += this->getProgramName();
-
-	
 	strUsage += " ";
 
-	// has the user specified any args or did we specify our default args or has the use (i.e. 4 -?, -h, -v, -u)
-	if ((m_isInitialized && m_aliasList.size() > 4) || (!m_isInitialized && !m_aliasList.empty()))
+
+	//
+	// add list of aliases defined by the user (we don't include generic /? /h /u /v and /i)
+	//
+
+	static const int NUM_GENERIC_ALIASES = 5;
+
+	if ((m_isInitialized && m_aliasList.size() > NUM_GENERIC_ALIASES) || (!m_isInitialized && !m_aliasList.empty()))
 	{
 		strUsage += "[-";
 		for (alias_list_t::const_iterator iter = m_aliasList.begin(); iter != m_aliasList.end(); ++iter)
 		{
-			// exclude '?' as an option, as well as the other default options - i.e. -h, -u and -v
+			// exclude default aliases
 			if ((iter->first != '?') && (iter->first != 'h') && (iter->first != 'u') && (iter->first != 'v')&& (iter->first != 'i'))
 			{
 				strUsage += iter->first;
