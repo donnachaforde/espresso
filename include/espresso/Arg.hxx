@@ -134,7 +134,7 @@ private:	// member vars
 	// does this switch require a value
 	bool m_isValueRequired; 
 	
-	// is it a manadory argument
+	// is it a manadatory argument
 	bool m_isMandatory;
 	
 	// indicates whether the flag is case sensitive or not
