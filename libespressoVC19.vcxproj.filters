@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{0bd532b7-04b3-4b7a-af67-c15a9fbceb0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{5ad473af-b618-4c30-90e2-ba9ea9061d0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\expresso">
+      <UniqueIdentifier>{94bf37e0-d62c-4fa7-9610-7375f2b7c016}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\espresso.hxx">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\Arg.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\ArgManagerFactory.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\ArgManager.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\Args.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\IArgMgr.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\IArgRenderer.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\StdoutArgRenderer.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\StopWatch.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\strings.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\sys.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\threads.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espresso\time.hxx">
+      <Filter>include\expresso</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stdhdr.hxx">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\espresso\Arg.inl">
+      <Filter>include\expresso</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Arg.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ArgManager.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ArgManagerFactory.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Args.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\espresso.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IArgMgr.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IArgRenderer.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stdhdr.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StdoutArgRenderer.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StopWatch.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strings.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sys.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\threads.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\time.cxx">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
