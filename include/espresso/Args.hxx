@@ -79,7 +79,7 @@ public:
 public:		// modifiers
 
 	// add an arg/switch to the expected arg list
-	bool add(const string& strSwitch, const Arg::type_t ArgType, const string& strDescription, bool IsValueRequired = false, string strValueHint = "", bool IsMandatory = false, bool IsCaseSensitive = true);
+	bool add(const string& strSwitch, const Arg::type_t ArgType, bool isRequired, const string& strDescription, bool isValueRequired = false, string strValueHint = "");
 
 	// specify an alias for a switch - i.e. a single char representation of a switch - e.g. -v or /v for --version
 	bool addAlias(const string& strSwitch, const char chAlias);
@@ -143,7 +143,7 @@ public:		// Arg accessors - must specify the switch or alias
 	long getNumericValue(const string& strSwitch) const; 
 
 	// is this a required arg
-	bool isMandatory(const string& strSwitch) const; 
+	bool isRequired(const string& strSwitch) const; 
 
 	// is the arg present on the arg list
 	bool isPresent(const string& strSwitch) const; 

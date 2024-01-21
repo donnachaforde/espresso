@@ -43,7 +43,7 @@ public:		// friends
 
 public:		// construction
 
-	Arg(const string& strSwitch, const type_t ArgType, const string& strDescription, bool IsValueRequired, string strValueHint, bool IsMandatory, bool IsCaseSensitive);
+	Arg(const string& strSwitch, const type_t ArgType, bool isRequired, const string& strDescription, bool isValueRequired, string strValueHint);
 	
 	// copy ctor
 	Arg(const Arg& rhs);
@@ -74,11 +74,9 @@ public:		// accessors
 
 	long getNumericValue() const; 
 
-	bool isMandatory() const; 
+	bool isRequired() const; 
 
 	bool isPresent() const;
-
-	bool isCaseSensitive() const; 
 
 	bool isValueRequired() const;
 	
@@ -99,11 +97,9 @@ private:	// modifiers
 
 	void setNumericValue(const long nValue); 
 	
-	void setMandatory(const bool IsMandatory); 
+	void setRequired(const bool IsMandatory); 
 
 	void setPresent(const bool IsPresent);
-
-	void setCaseSensitive(const bool IsCaseSensitive); 
 
 	void setValueRequired(const bool IsValueRequired); 
 
@@ -134,15 +130,13 @@ private:	// member vars
 	// does this switch require a value
 	bool m_isValueRequired; 
 	
-	// is it a manadatory argument
-	bool m_isMandatory;
-	
-	// indicates whether the flag is case sensitive or not
-	bool m_isCaseSensitive; //???
+	// is it a required argument
+	bool m_isRequired;
 	
 	// is the arg present? (in the arg list)
 	bool m_isPresent;
 
+	// has a value been supplied for an arg that requires a value
 	bool m_isValueSupplied; 
 
 };

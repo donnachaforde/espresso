@@ -155,10 +155,10 @@ Args::~Args()
 void Args::addDefaults()
 {
 	// specify default common args
-	this->add("help",	 Arg::NOARG, "Display this help message (and then exit).");
-	this->add("usage",	 Arg::NOARG, "Display usage instructions.");
-	this->add("version", Arg::NOARG, "Display version information.");
-	this->add("info", Arg::NOARG, "Display build information about this executable.");
+	this->add("help",	 Arg::NOARG, false, "Display this help message (and then exit).");
+	this->add("usage",	 Arg::NOARG, false, "Display usage instructions.");
+	this->add("version", Arg::NOARG, false, "Display version information.");
+	this->add("info", Arg::NOARG, false, "Display build information about this executable.");
 
 	// add default aliases
 	this->addAlias("help", '?');
@@ -187,21 +187,19 @@ void Args::addDefaults()
 //
 // Argument       : const string& strDescription
 //
-// Argument       : bool IsValueRequired /*= false*/
+// Argument       : bool isValueRequired /*= false*/
 //
-// Argument       : bool IsMandatory /*= false*/
-//
-// Argument       : bool IsCaseSensitive /*= true*/
+// Argument       : bool isRequired /*= false*/
 //
 // Description    : 
 //
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-bool Args::add(const string& strSwitch, const Arg::type_t ArgType, const string& strDescription, bool IsValueRequired /*= false*/, string strValueHint /*= ""*/, bool IsMandatory /*= false*/, bool IsCaseSensitive /*= true*/)
+bool Args::add(const string& strSwitch, const Arg::type_t ArgType, bool isRequired, const string& strDescription, bool isValueRequired /*= false*/, string strValueHint /*= ""*/)
 {
 	// create an arg instance
-	Arg arg(strSwitch, ArgType, strDescription, IsValueRequired, strValueHint, IsMandatory, IsCaseSensitive); 
+	Arg arg(strSwitch, ArgType, isRequired, strDescription, isValueRequired, strValueHint);
 	
 	// add it to our internal list of args
 	pair<arg_list_t::iterator, bool> nRetVal = m_argList.insert(make_pair(strSwitch, arg));
@@ -401,10 +399,38 @@ bool Args::parse()
 }
 
 
+//------------------------------------------------------------------------------
+//
+// Function       : Args::isRequired
+//
+// Return type    : bool 
+//
+// Argument       : const string& strSwitch
+//
+// Description    : 
+//
+// Notes          : 
+//
+//------------------------------------------------------------------------------
+bool Args::isRequired(const string& strSwitch) const
+{
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
+
+	if (c_iter != m_argList.end())
+	{
+		const Arg& arg = c_iter->second;
+		return (arg.isRequired());
+	}
+	else
+	{
+		return false;
+	}
+}
+
 
 //------------------------------------------------------------------------------
 //
-// Function       : Args::IsPresent
+// Function       : Args::isPresent
 //
 // Return type    : bool 
 //
@@ -434,7 +460,7 @@ bool Args::isPresent(const string& strSwitch) const
 
 //------------------------------------------------------------------------------
 //
-// Function       : Args::IsPresent
+// Function       : Args::isPresent
 //
 // Return type    : bool 
 //
@@ -462,7 +488,7 @@ bool Args::isPresent(const char chAlias) const
 
 //------------------------------------------------------------------------------
 //
-// Function       : Args::IsValueSupplied
+// Function       : Args::isValueSupplied
 //
 // Return type    : bool 
 //
@@ -491,7 +517,7 @@ bool Args::isValueSupplied(const string& strSwitch) const
 
 //------------------------------------------------------------------------------
 //
-// Function       : Args::IsValueSupplied
+// Function       : Args::isValueSupplied
 //
 // Return type    : bool 
 //
@@ -515,6 +541,37 @@ bool Args::isValueSupplied(const char chAlias) const
 	}
 }
 
+
+
+
+
+//------------------------------------------------------------------------------
+//
+// Function       : Args::getType
+//
+// Return type    : bool 
+//
+// Argument       : const string& strSwitch
+//
+// Description    : 
+//
+// Notes          : 
+//
+//------------------------------------------------------------------------------
+Arg::type_t Args::getType(const string& strSwitch) const
+{
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
+
+	if (c_iter != m_argList.end())
+	{
+		const Arg& arg = c_iter->second;
+		return (arg.getType());
+	}
+	else
+	{
+		return Arg::NOARG;
+	}
+}
 
 
 //------------------------------------------------------------------------------
@@ -600,7 +657,7 @@ bool Args::addAlias(const string& strSwitch, const char chAlias)
 
 //------------------------------------------------------------------------------
 //
-// Function       : Args::IsTargetPresent
+// Function       : Args::isTargetPresent
 //
 // Return type    : bool 
 //
@@ -764,7 +821,7 @@ string Args::getUsage() const
 		if ((pArg->getSwitch() != "help") && (pArg->getSwitch() != "usage") && (pArg->getSwitch() != "version") && (pArg->getSwitch() != "info"))
 		{
 			// optional switches are enclosed in solid braces
-			if (!pArg->isMandatory())
+			if (!pArg->isRequired())
 			{
 				strUsage += "[";
 			}
@@ -790,7 +847,7 @@ string Args::getUsage() const
 				}
 			}
 		
-			if (!pArg->isMandatory())
+			if (!pArg->isRequired())
 			{
 				strUsage += "]";
 			}

@@ -28,15 +28,14 @@ using namespace std;
 
 
 // ctor
-Arg::Arg(const string& strSwitch, const type_t ArgType, const string& strDescription, bool IsValueRequired, string strValueHint, bool IsMandatory, bool IsCaseSensitive)
+Arg::Arg(const string& strSwitch, const type_t ArgType, bool isRequired, const string& strDescription, bool isValueRequired, string strValueHint)
 {
 	m_strSwitch = strSwitch;
 	m_argType = ArgType;
 	m_strDescription = strDescription;
-	m_isValueRequired = IsValueRequired;
+	m_isValueRequired = isValueRequired;
 	m_strValueHint = strValueHint;
-	m_isMandatory = IsMandatory;
-	m_isCaseSensitive = IsCaseSensitive;
+	m_isRequired = isRequired;
 	m_isPresent = false;
 	m_isValueSupplied = false;
 	m_nValue = 0;
@@ -51,8 +50,7 @@ Arg::Arg(const Arg& rhs)
 	m_strDescription	= rhs.m_strDescription;
 	m_strValue			= rhs.m_strValue;
 	m_nValue			= rhs.m_nValue;
-	m_isMandatory		= rhs.m_isMandatory;
-	m_isCaseSensitive	= rhs.m_isCaseSensitive; 
+	m_isRequired		= rhs.m_isRequired;
 	m_isPresent			= rhs.m_isPresent;
 	m_isValueRequired	= rhs.m_isValueRequired;
 	m_strValueHint		= rhs.m_strValueHint;
@@ -70,8 +68,7 @@ Arg& Arg::operator=(const Arg& rhs)
 		m_strDescription	= rhs.m_strDescription;
 		m_strValue			= rhs.m_strValue;
 		m_nValue			= rhs.m_nValue;
-		m_isMandatory		= rhs.m_isMandatory;
-		m_isCaseSensitive	= rhs.m_isCaseSensitive; 
+		m_isRequired		= rhs.m_isRequired;
 		m_isPresent			= rhs.m_isPresent;
 		m_isValueRequired	= rhs.m_isValueRequired;
 		m_strValueHint		= rhs.m_strValueHint;
@@ -118,9 +115,9 @@ string Arg::getDescription() const
 }
 
 
-bool Arg::isMandatory() const
+bool Arg::isRequired() const
 {
-	return m_isMandatory; 
+	return m_isRequired; 
 }
 
 
@@ -129,11 +126,6 @@ bool Arg::isPresent() const
 	return m_isPresent;
 }
 
-
-bool Arg::isCaseSensitive() const
-{
-	return m_isCaseSensitive;
-}
 
 
 bool Arg::isValueRequired() const
@@ -193,27 +185,23 @@ void Arg::setNumericValue(const long nValue)
 }
 
 
-void Arg::setMandatory(const bool IsMandatory)
+void Arg::setRequired(const bool isRequired)
 {
-	m_isMandatory = IsMandatory;
+	m_isRequired = isRequired;
 }
 
 
-void Arg::setPresent(const bool IsPresent)
+void Arg::setPresent(const bool isPresent)
 {
-	m_isPresent = IsPresent;
+	m_isPresent = isPresent;
 }
 
 
-void Arg::setCaseSensitive(const bool IsCaseSensitive)
-{
-	m_isCaseSensitive = IsCaseSensitive;
-}
 
 
-void Arg::setValueRequired(const bool IsValueRequired)
+void Arg::setValueRequired(const bool isValueRequired)
 {
-	m_isValueRequired = IsValueRequired;
+	m_isValueRequired = isValueRequired;
 }
 
 
