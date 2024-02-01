@@ -97,13 +97,13 @@ private:	// modifiers
 
 	void setNumericValue(const long nValue); 
 	
-	void setRequired(const bool IsMandatory); 
+	void setRequired(const bool isMandatory); 
 
-	void setPresent(const bool IsPresent);
+	void setPresent(const bool isPresent);
 
-	void setValueRequired(const bool IsValueRequired); 
+	void setValueRequired(const bool isValueRequired); 
 
-	void setValueSupplied(bool IsValueSupplied);
+	void setValueSupplied(bool isValueSupplied);
 
 
 private:	// member vars
