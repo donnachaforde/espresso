@@ -133,7 +133,7 @@ namespace espresso
 	};
 
 
-	static const char* BUILD_VERSION = "0.1.1.101 (Beta)";
+	static const char* BUILD_VERSION = "0.10.1.102-beta";
 }
 
 
