@@ -75,8 +75,7 @@ void StdoutArgRenderer::onRequestHelp(const Args& args)
 																	<< endl 
 		 << args.getOptionsDescriptions()							<< endl
 																	<< endl
-		 << args.getCopyrightNotice()								<< endl
-		 << args.getBugReportingInstructions()						<< endl;
+		 << args.getCopyrightNotice()								<< endl;
 
 	return;
 }
@@ -99,8 +98,7 @@ void StdoutArgRenderer::onRequestHelp(const Args& args)
 void StdoutArgRenderer::onRequestUsage(const Args& args)
 {
 	cout << args.getUsage()											<< endl
-																	<< endl 
-		 << args.getCopyrightNotice()								<< endl;
+																	<< endl; 
 
 	return;
 }
@@ -122,8 +120,7 @@ void StdoutArgRenderer::onRequestUsage(const Args& args)
 //------------------------------------------------------------------------------
 void StdoutArgRenderer::onRequestVersion(const Args& args)
 {
-	cout << args.getProgramName() << " " << args.getVersion()		<< endl 
-		 << args.getCopyrightNotice()								<< endl;
+	cout << args.getProgramName() << " " << args.getVersion()		<< endl; 
 
 	return;
 }
@@ -150,29 +147,30 @@ void StdoutArgRenderer::onRequestVersion(const Args& args)
 void StdoutArgRenderer::onRequestInfo(const Args& args)
 {
 	cout																			<< endl
-		 << args.getProgramName() << " " << args.getVersion()						/*<< endl */
-//																					<< endl
-//		 << "Compiled: " << __TIME__ << " " << __DATE__								<< endl
+		 << args.getProgramName() << " " << args.getVersion()						
 
 #ifdef _DEBUG
-		 << " [Debug]"															<< endl
+		 << " [Debug]"																<< endl
 #else
 		 << " [Release]"															<< endl
 #endif
 																					<< endl;
-
-
-	string strInfo = args.getProgramInfo();
-	if (!strInfo.empty())
+	// show extra info if provided
+	if (!args.getProgramDescription().empty())
 	{
-		cout << strInfo																<< endl;
+		cout << args.getProgramDescription()										<< endl
+																					<< endl
+																					<< endl;
 	}
 
-	cout << "Built with the espresso library Version " << sys::getBuildVersion()
+
+	cout << "Built using the espresso library, Version " << sys::getBuildVersion()
 		 << " - compiled at " << __TIME__ << " " << __DATE__ << "."					<< endl
+		 << "https://github.com/donnachaforde/espresso/releases"					<< endl
 																					<< endl
-		 << args.getCopyrightNotice()												<< endl
-		 << args.getBugReportingInstructions()										<< endl;
+		 << args.getBugReportingInstructions()										<< endl
+																					<< endl
+		 << args.getCopyrightNotice()												<< endl;
 
 	return;
 }
@@ -193,11 +191,14 @@ void StdoutArgRenderer::onRequestInfo(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void StdoutArgRenderer::onArgError(const Args& args)
+void StdoutArgRenderer::onArgError(const Args& args, const string strInvalidOption)
 {
-	cout << args.getUsage()											<< endl
-																	<< endl 
-		 << args.getCopyrightNotice()								<< endl;
+	cout << "ERROR: Invalid option provided: - '" << strInvalidOption << "'" << endl 
+																			 << endl;
+
+	cout << args.getUsage()													 << endl
+																			 << endl 
+		 << args.getCopyrightNotice()										 << endl;
 
 	return;
 }

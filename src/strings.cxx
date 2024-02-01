@@ -22,7 +22,7 @@ using namespace espresso;
 
 //------------------------------------------------------------------------------
 //
-// Function name	: IsValidString
+// Function name	: isValidString
 //
 // Return type		: bool 
 //
@@ -64,7 +64,7 @@ using namespace espresso;
 
 //------------------------------------------------------------------------------
 //
-// Function       : IsValidString
+// Function       : isValidString
 //
 // Return type    : bool 
 //
