@@ -31,7 +31,7 @@
 *.positions
 *.plg
 *.suo
-*.vcproj
+# *.vcproj
 *.vcxproj.user
 # *.vcxproj.filters
 *.VC.db
@@ -43,6 +43,7 @@ Debug
 Release
 Win32
 x64
+output
 
 # Visual Code
 .vscode
