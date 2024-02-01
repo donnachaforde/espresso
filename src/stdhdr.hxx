@@ -120,7 +120,20 @@
 
 namespace espresso
 {
-	static const char* BUILD_VERSION = "0.1.0.4 (Beta)";
+	struct version
+	{
+		enum buildtype {Alpha, Beta, RC, Release };
+		
+		static const int MajorVersion = 0;
+		static const int MinorVersion = 1;
+		static const int Revision = 1;
+		static const int Build = 101;
+
+		buildtype build = Beta;
+	};
+
+
+	static const char* BUILD_VERSION = "0.1.1.101 (Beta)";
 }
 
 
