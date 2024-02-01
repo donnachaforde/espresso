@@ -152,9 +152,9 @@ void ArgManager::onRequestInfo(const Args& args)
 // Notes          : 
 //
 //------------------------------------------------------------------------------
-void ArgManager::onArgError(const Args& args)
+void ArgManager::onArgError(const Args& args, const string strInvalidOption)
 {
-	m_argRenderer.onRequestInfo(args);
+	m_argRenderer.onArgError(args, strInvalidOption);
 }
 
 
@@ -184,8 +184,10 @@ void ArgManager::onArgError(const Args& args)
 int ArgManager::parseAndProcessArgs(Args& args)
 {
 	// parse the arg list
-	if (!args.parse())
+	string strInvalidOption; 
+	if (!args.parse(strInvalidOption))
 	{
+		this->onArgError(args, strInvalidOption);
 		return -1;
 	}
 
@@ -210,6 +212,16 @@ int ArgManager::parseAndProcessArgs(Args& args)
 	{
 		this->onRequestInfo(args);
 		return 1;
+	}
+	else if (args.isTargetRequired() && !args.isTargetPresent())
+	{
+		this->onRequestUsage(args);
+		return -1;
+	}
+	else if (!args.isRequiredArgsPresent())
+	{
+		this->onRequestUsage(args);
+		return -1;
 	}
 	else
 	{

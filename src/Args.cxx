@@ -51,7 +51,7 @@ using namespace std;
 //
 // Argument       : const string& strCopyrightYear
 //
-// Argument       : const string& strEMailAddressForBugs
+// Argument       : const string& strReportBugsTo
 //
 // Description    : 
 //
@@ -65,7 +65,7 @@ Args::Args(int argc,
 		   const string& strVersion, 
 		   const string& strCopyrightOwner,
 		   const string& strCopyrightYear,
-		   const string& strEMailAddressForBugs)
+		   const string& strReportBugsTo)
 {
 	m_argc = argc; 
 	m_argv = argv; 
@@ -75,9 +75,9 @@ Args::Args(int argc,
 	m_strVersion = strVersion; 
 	m_strCopyrightOwner = strCopyrightOwner;
 	m_strCopyrightYear = strCopyrightYear;
-	m_strEMailAddressForBugs = strEMailAddressForBugs;
-	m_isTargetPresent = false; 
-	m_isInitialized = false;
+	m_strBugReporting = strReportBugsTo;
+	
+	this->initialize();
 }
 
 
@@ -103,7 +103,7 @@ Args::Args(int argc,
 //
 // Argument       : const string& strCopyrightYear
 //
-// Argument       : const string& strEMailAddressForBugs
+// Argument       : const string& strReportBugsTo
 //
 // Description    : 
 //
@@ -118,7 +118,7 @@ Args::Args(int argc,
 		   const string& strVersion, 
 		   const string& strCopyrightOwner,
 		   const string& strCopyrightYear,
-		   const string& strEMailAddressForBugs)
+		   const string& strReportBugsTo)
 {
 	m_argc = argc; 
 	m_argv = argv; 
@@ -128,10 +128,17 @@ Args::Args(int argc,
 	m_strVersion = strVersion; 
 	m_strCopyrightOwner = strCopyrightOwner;
 	m_strCopyrightYear = strCopyrightYear;
-	m_strEMailAddressForBugs = strEMailAddressForBugs;
-	m_isTargetPresent = false; 
-	m_isInitialized = false;
+	m_strBugReporting = strReportBugsTo;
 
+	this->initialize();
+}
+
+void Args::initialize()
+{
+	// internal initializations
+	m_isTargetPresent = false;
+	m_isDefaultArgsAdded = false;
+	m_isTargetRequired = false;
 }
 
 
@@ -168,7 +175,7 @@ void Args::addDefaults()
 	this->addAlias("info", 'i');
 
 	// flag that we've initialized ourselves
-	m_isInitialized = true; 
+	flagDefaultArgsAdded();
 
 	return;
 }
@@ -221,6 +228,11 @@ bool Args::parse(/*inout*/ string& strInvalidOption)
 	}
 }
 
+void espresso::Args::requireTarget()
+{
+	m_isTargetRequired = true;
+}
+
 
 
 //------------------------------------------------------------------------------
@@ -238,13 +250,15 @@ bool Args::parse()
 {
 	Arg* pArg = NULL; 
 
-	for (int i = 1; i < m_argc; i++)							// for each of the parameters passed
+	// for each of the parameters passed
+	for (int i = 1; i < m_argc; i++)							
 	{
-		bool IsExpectedParam = false; 
-		bool IsValueAlreadySet = false; 
+		bool isExpectedParam = false; 
+		bool isValueAlreadySet = false; 
 		char* pch = m_argv[i];
 
-		if (::strncmp(pch, "--", 2) == 0)
+		// leading "--" and has some text
+		if ((::strncmp(pch, "--", 2) == 0) && (::strlen(pch) > 2))
 		{
 			pch++;
 			pch++;
@@ -273,11 +287,11 @@ bool Args::parse()
 				}
 			}
 
-			// locate the arg & 
+			// try locate the arg in our list of specified params
 			arg_list_t::iterator iter = m_argList.find(pch);
 			if (iter != m_argList.end())
 			{
-				IsExpectedParam = true; 
+				isExpectedParam = true; 
 
 				pArg = &(iter->second); 
 				pArg->setPresent(true);
@@ -295,12 +309,12 @@ bool Args::parse()
 					}
 					
 					pArg->setValueSupplied(true);
-					IsValueAlreadySet = true; 
+					isValueAlreadySet = true; 
 				}
 			}
 
 		}
-		else if ((*pch == '-') || (*pch == '/'))
+		else if ((*pch == '-') || (*pch == '/')) 
 		{
 			pch++;
 			assert((pch != NULL) || (*pch != '\0')); 
@@ -328,14 +342,14 @@ bool Args::parse()
 					
 					if (iter != m_argList.end())
 					{
-						IsExpectedParam = true; 
+						isExpectedParam = true; 
 
 						pArg = &(iter->second); 
 						pArg->setPresent(true);
 					}
 					else
 					{
-						IsExpectedParam = false; 
+						isExpectedParam = false; 
 						break; 
 					}
 					
@@ -344,9 +358,9 @@ bool Args::parse()
 			}
 		}
 
-		if (IsExpectedParam)
+		if (isExpectedParam)
 		{
-			if ((pArg->isValueRequired() || pArg->isValueOptional()) && !IsValueAlreadySet)
+			if ((pArg->isValueRequired() || pArg->isValueOptional()) && !isValueAlreadySet)
 			{
 				// process possible value
 				if ( ((i + 1) < m_argc) && !((*m_argv[i + 1] == '-') || (*m_argv[i + 1] == '/')) )
@@ -388,7 +402,7 @@ bool Args::parse()
 			}
 			else
 			{
-				m_isTargetPresent = true; 
+				this->flagTargetPresent();
 				m_strTarget = m_argv[i];
 			}
 
@@ -574,6 +588,20 @@ Arg::type_t Args::getType(const string& strSwitch) const
 }
 
 
+string espresso::Args::getDescription(const string& strSwitch) const
+{
+	string strTmp;
+
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
+	if (c_iter != m_argList.end())
+	{
+		const Arg& arg = c_iter->second;
+		strTmp = arg.getDescription();
+	}
+
+	return strTmp;
+}
+
 //------------------------------------------------------------------------------
 //
 // Function       : Args::GetStringValue
@@ -645,13 +673,20 @@ long Args::getNumericValue(const string& strSwitch) const
 //
 // Notes          : 
 //
-// TODO: Add case-sensitivity to aliases? (, bool IsCaseSensitive /*= true*/)
 //
 //------------------------------------------------------------------------------
 bool Args::addAlias(const string& strSwitch, const char chAlias)
 {
-	pair<alias_list_t::iterator, bool> nRetVal = m_aliasList.insert(make_pair(chAlias, strSwitch));
-	return (nRetVal.second);
+	bool isSuccess = false;
+
+	arg_list_t::const_iterator c_iter = m_argList.find(strSwitch);
+	if (c_iter != m_argList.end())
+	{
+		pair<alias_list_t::iterator, bool> nRetVal = m_aliasList.insert(make_pair(chAlias, strSwitch));
+		isSuccess = nRetVal.second;
+	}
+
+	return isSuccess; 
 }
 
 
@@ -704,6 +739,11 @@ string Args::getTarget() const
 string Args::getInvalidOption() const
 {
 	return m_strInvalidArgv;
+}
+
+bool espresso::Args::isTargetRequired() const
+{
+	return m_isTargetRequired;
 }
 
 
@@ -798,7 +838,7 @@ string Args::getUsage() const
 
 	static const int NUM_GENERIC_ALIASES = 5;
 
-	if ((m_isInitialized && m_aliasList.size() > NUM_GENERIC_ALIASES) || (!m_isInitialized && !m_aliasList.empty()))
+	if ((isDefaultArgsAdded() && m_aliasList.size() > NUM_GENERIC_ALIASES) || (!isDefaultArgsAdded() && !m_aliasList.empty()))
 	{
 		strUsage += "[-";
 		for (alias_list_t::const_iterator iter = m_aliasList.begin(); iter != m_aliasList.end(); ++iter)
@@ -857,7 +897,7 @@ string Args::getUsage() const
 	}
 
 	// add this bit for those cli commands that have a target operand
-	if (m_isTargetPresent)
+	if (isTargetRequired())
 	{
 		strUsage += "<target>";
 	}
@@ -912,10 +952,10 @@ string Args::getBugReportingInstructions() const
 {
 	string strBugReportingInstructions; 
 
-	if (!m_strEMailAddressForBugs.empty())
+	if (!m_strBugReporting.empty())
 	{
 		strBugReportingInstructions += "Report bugs to ";
-		strBugReportingInstructions += m_strEMailAddressForBugs;	
+		strBugReportingInstructions += m_strBugReporting;	
 		strBugReportingInstructions += ".";	
 	}
 	return strBugReportingInstructions;
@@ -946,53 +986,6 @@ string Args::getOptionsDescriptions() const
 
 	return strOptions;
 }
-
-
-
-//------------------------------------------------------------------------------
-//
-// Function       : Args::GetInfo
-//
-// Return type    : string 
-//
-// Description    : 
-//
-// Notes          : 
-//
-//------------------------------------------------------------------------------
-string Args::getProgramInfo() const
-{
-	return m_strInfo;
-}
-
-
-
-//------------------------------------------------------------------------------
-//
-// Function       : Args::AddInfo
-//
-// Return type    : void 
-//
-// Argument       : const string& strInfo
-//
-// Description    : 
-//
-// Notes          : 
-//
-//------------------------------------------------------------------------------
-void Args::addProgramInfo(const string& strInfo)
-{
-	if (!m_strInfo.empty())
-	{
-		m_strInfo += "\n";
-	}
-
-	m_strInfo += strInfo;
-}
-
-
-
-
 
 
 
@@ -1088,4 +1081,37 @@ std::ostream& espresso::operator<<(std::ostream& os, const Args& args)
 }
 
 
+void Args::flagTargetPresent()
+{
+	this->m_isTargetPresent = true;
+}
+
+void Args::flagDefaultArgsAdded() 
+{
+	this->m_isDefaultArgsAdded = true; 
+}
+
+
+bool Args::isDefaultArgsAdded() const
+{
+	return this->m_isDefaultArgsAdded;
+}
+
+
+bool Args::isRequiredArgsPresent() const
+{
+	bool isRequiredArgsPresent = true;
+
+	// iterate over the list of args to ensure all those required are actually present
+	for (arg_list_t::const_iterator iter = m_argList.begin(); iter != m_argList.end(); ++iter)
+	{
+		Arg arg = iter->second;
+		if (arg.isRequired() && !arg.isPresent())
+		{
+			isRequiredArgsPresent = false;
+		}
+	}
+
+	return isRequiredArgsPresent;
+}
 
