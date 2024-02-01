@@ -1,17 +1,15 @@
 # README - espresso lib 
-A small C++ library for developing CLI tools easily and quickly.
+A simple C++ library to help develop CLI tools easily and quickly by handling command-line args. 
 
 
 ## Introduction
 
-Ever had a good idea for a tool command or utility, made a start but then found yourself getting distracted coping with options at the command-line?
-
-If so, **espresso** can alleviate that overhead by taking care of command-line options, help and versioning output and free you up to concentrate on solving your utility. 
+Have you ever had a good idea for a CLI tool? But, when it comes to developing it, you get bogged down dealing with the intricacies of dealing with command line options? If so, then, **espresso** can alleviate that overhead by taking care of command-line options, help and versioning output, automatic error checking and handling, thereby freeing you up to concentrate on solving your utility. 
 
 The key features are:
 * A clear and simple API to define the arguments/switches your tool supports. 
 * Automatic parsing of the arglist and syntax checking to ensure the correct params are being provided.
-* Provision of common default args, such as --help, --version, etc. 
+* Provision of common default args, such as --help, --version, --info and --usage. 
 
 
 
@@ -29,7 +27,7 @@ Whats included?
 
 What platforms are supported?
 
-* Windows 10 (Visual C++ 2017)
+* Windows 10 x64 (Visual C++ 2019)
 * macOS (gcc)
 
 
@@ -52,7 +50,7 @@ The makefile is pretty trivial but works. Plans are afoot to adopt CMake.
 
 
 ## Examples
-Check out [Espresso Tools](https://github.com/donnachaforde/espresso-tools) for example code that uses Espresso lib. There is also a [Developer Guide](docs/Developer-Guide.md) that mas more info on how to use the library to get you up and running quickly. 
+Check out [espresso tools](https://github.com/donnachaforde/espresso-tools) for example code that uses Espresso lib. There is also a [Developer Guide](docs/Developer-Guide.md) that mas more info on how to use the library to get you up and running quickly. 
 
 Finally, there's a [blog](docs/README.md) where I try to capture thoughts on design as the solution evolves. 
 
@@ -63,5 +61,5 @@ Finally, there's a [blog](docs/README.md) where I try to capture thoughts on des
 
 Donnacha Forde
 
-November, 2020
+January 2024
 
