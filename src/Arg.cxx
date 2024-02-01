@@ -205,9 +205,9 @@ void Arg::setValueRequired(const bool isValueRequired)
 }
 
 
-void Arg::setValueSupplied(bool IsValueSupplied)
+void Arg::setValueSupplied(bool isValueSupplied)
 {
-	m_isValueSupplied = IsValueSupplied;
+	m_isValueSupplied = isValueSupplied;
 }
 
 
