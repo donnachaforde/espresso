@@ -36,7 +36,7 @@ struct IArgRenderer
 	virtual void onRequestInfo(const Args& args) = 0;
 
 	// ??
-	virtual void onArgError(const Args& args) = 0;
+	virtual void onArgError(const Args& args, const string strInvalidOption) = 0;
 };
 
 
