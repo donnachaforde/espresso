@@ -53,6 +53,8 @@ output
 
 # CMake generated build directories
 /build
+/install
+/package
 
 
 # macOS specific files
