@@ -45,7 +45,42 @@ The software was originally developed on Windows 32-bit environments but was suc
 
 The original visual studio file were created Visual Studio 6.0 (which gives an indication as to the point when this 'tinkering' began) but were later ported to Visual Studio 2003, then Visual Studio 2005 and later Visual Studio 2008. There followed a fallow period before I again became re-acquainted with DevStudio using Visual Studio 2014 and then Visual Studio 2017. Most recently, I've ported to Visual Studio 2019. 
 
-The makefile is pretty trivial but works. Plans are afoot to adopt CMake. 
+
+## Building with CMake (macOS & Cross-Platform)
+
+The project now supports building with CMake, making it easy to build on macOS and other platforms.
+
+### Prerequisites
+
+- CMake (install via Homebrew: `brew install cmake`)
+- A C++17-compatible compiler (e.g., Apple Clang, GCC, MSVC)
+
+### Build Steps (macOS/Linux)
+
+```bash
+git clone https://github.com/donnachaforde/espresso.git
+cd espresso
+
+cmake -S ./ -B ./build 
+cmake --build ./build --config Release   # For release build (libespresso.a)
+cmake --build ./build --config Debug     # For debug build (libespressod.a)
+```
+
+The static library will be generated in `build/lib/` as `libespresso.a` (Release) and `libespressod.a` (Debug).
+
+### Build Steps (Windows)
+
+You can use CMake with Visual Studio 2019 or later:
+
+```powershell
+cmake -S . -B ./build
+cmake --build ./build --config Release   # libespresso.lib
+cmake --build ./build --config Debug     # libespressod.lib
+```
+
+### Notes
+- Precompiled headers are supported (using `stdhdr.hxx`).
+- The legacy makefile is still available for Unix-like systems.
 
 
 
@@ -61,5 +96,5 @@ Finally, there's a [blog](docs/README.md) where I try to capture thoughts on des
 
 Donnacha Forde
 
-January 2024
+August 2025
 
