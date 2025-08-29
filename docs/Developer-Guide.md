@@ -70,8 +70,12 @@ Shortcut switches are also support as 'aliases'
 
 Next, create an Argument Manager and 'parse' the args. 
 
-	ArgMgr argMgr(args); 
-	argMgr.parseAndProcessArgs(); 
+	ArgManager argMgr = ArgManagerFactory::createInstance();
+	int nRetVal = argMgr.parseAndProcessArgs(args);
+	if (nRetVal != 0)
+	{
+		::exit(0);
+	}
 
 You can interogate the Arg-Manager about args you expect, etc. 
 
