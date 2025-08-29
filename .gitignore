@@ -54,3 +54,6 @@ output
 # CMake generated build directories
 cmake-build-*
 CMakeLists.txt
+
+# macOS specific files
+.DS_Store
