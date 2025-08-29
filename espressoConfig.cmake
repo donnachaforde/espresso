@@ -1,10 +1,11 @@
 # espressoConfig.cmake - CMake package configuration file for espresso
 
-# Set the include directory
-set(espresso_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/../include")
 
-# Set the library directory
-set(espresso_LIBRARY_DIR "${CMAKE_CURRENT_LIST_DIR}/../lib")
+
+# Use relative paths for in-source builds
+get_filename_component(_prefix "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
+set(espresso_INCLUDE_DIR "${_prefix}/include")
+set(espresso_LIBRARY_DIR "${_prefix}/lib")
 
 # Set the library file (Release by default)
 set(espresso_LIBRARIES "${espresso_LIBRARY_DIR}/libespresso.a")
