@@ -36,6 +36,20 @@ set_target_properties(espresso PROPERTIES
     OUTPUT_NAME_DEBUG "espressod"
 )
 
+# Install rules
+install(TARGETS espresso
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+)
+
+install(DIRECTORY include/ DESTINATION include)
+
+install(FILES espressoConfig.cmake DESTINATION lib/cmake/espresso)
+
+# Packaging support
+include(CPack)
+
 # Example: add executable if you have a main
 # add_executable(espresso_main src/main.cxx)
 # target_link_libraries(espresso_main espresso)
