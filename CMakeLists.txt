@@ -58,3 +58,35 @@ include(CPack)
 if(APPLE)
     # Add macOS-specific flags or frameworks here
 endif()
+
+
+# Incorporate Google Tests
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/heads/main.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP true
+)
+FetchContent_MakeAvailable(googletest)
+
+
+enable_testing()
+
+add_executable(espresso_tests 
+  tests/TestArgs.cxx
+  # Add more test files here
+)
+
+target_include_directories(espresso_tests
+  PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/include/espresso
+)
+
+target_link_libraries(espresso_tests
+  PRIVATE
+    espresso
+    gtest_main
+) 
+
+add_test(NAME espresso_tests COMMAND espresso_tests)
