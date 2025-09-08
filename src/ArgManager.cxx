@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½ 1993-2020, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
@@ -175,7 +175,7 @@ void ArgManager::onArgError(const Args& args, const string strInvalidOption)
 //
 //					1 to indicate a successful parse and an auto handled arg
 //
-//					0 to indicate a succesful parse but without any auto handled args
+//					0 to indicate a successful parse but without any auto handled args
 //
 // Notes          : @todo This needs to be rewritten to (probably) just return a bool. As it stands, 
 // and test such as if (!ParseAndProcessArgs()) will translate to 'false' when we return -1. 
