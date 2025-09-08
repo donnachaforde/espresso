@@ -4,7 +4,7 @@ A simple C++ library to help develop CLI tools easily and quickly by handling pr
 
 ## Introduction
 
-Have you ever found yourself building an application of tool only to get bogged down having to parse command-line args?
+Have you ever found yourself building an application or tool only to get bogged down having to parse command-line args?
 
 That's where the **espresso** library comes in. It makes it easy to specify what cmd-line switches you wish to support, whether they take a parameter and whether they're mandatory. It provides the ability to interrogate these switches, check they are present and retrieve their stringified or numeric values. In short, it handles these chores and allows you to concentrate on your applications features.
 
