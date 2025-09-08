@@ -34,14 +34,7 @@ Enable as follows:
 > Of course, these macros must be defined before Crucial information necessary for users to succeed.
 
 
-### Build Version
 
-The version of the library is defined within the `<espresso.hxx>` header and publicly accessible as:
-
-```cpp
-espresso::BUILD_VERSION
-```
-This is a string you can reference if you wish. 
 
 
 
