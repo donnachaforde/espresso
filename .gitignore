@@ -52,5 +52,10 @@ output
 .idea
 
 # CMake generated build directories
-cmake-build-*
-CMakeLists.txt
+/build
+/install
+/package
+
+
+# macOS specific files
+.DS_Store
