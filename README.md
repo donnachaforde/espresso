@@ -116,11 +116,11 @@ cmake --install ./build --prefix ./install
 ## Additional Resources
 There are other resources you can use to familiarize yourself with the library, as follows:
 
-- **Developer Guide** - The [Developer Guide](docs/Developer-Guide.md) guide will walk you through how to incorporate the library into your project and how to exercise the library. 
+-  [Developer Guide](docs/Developer-Guide.md) - This will walk you through how to incorporate the library into your project and how to exercise the library. 
 
-- **Sample Implementations** - For examples of how the library is used in practice, check out [espresso tools](https://github.com/donnachaforde/espresso-tools), which is a collection of simple CLI utilities that utilize `libespressso` to manage their command-line args. 
+- [Sample Implementations](https://github.com/donnachaforde/espresso-tools) - Code examples showing how to use the library can be viewed in [espresso tools](https://github.com/donnachaforde/espresso-tools),  a collection of simple CLI utilities. 
 
-- **Design Discussions** - For those who'd like to delve deeper into the design philosophy behind `libespresso`, there are a few blog articles [here](https://donnachaforde.github.io/blogs+posts/software-engineering/) under the section 'Designing the espresso library'. 
+- [Design Discussions](https://donnachaforde.github.io/blogs+posts/software-engineering/espresso/)- Blogs discussing design options and trade-offs for those that'd like to delve deeper into the design philosophy behind `libespresso`.
 
 
 
