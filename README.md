@@ -72,7 +72,11 @@ cd espresso
 ```
 Trigger the CMake 'generate' and 'build' steps.
 ```bash
-cmake -S ./src -B ./build 
+cmake -S ./src -B ./build -DCMAKE_BUILD_TYPE=Release # for release build
+cmake -S ./src -B ./build -DCMAKE_BUILD_TYPE=Debug   # for debug build
+```
+
+```bash
 cmake --build ./build --config Release   # For release build (libespresso.a)
 cmake --build ./build --config Debug     # For debug build (libespressod.a)
 ```
@@ -89,6 +93,24 @@ cmake --build ./build --config Release   # libespresso.lib
 cmake --build ./build --config Debug     # libespressod.lib
 ```
 
+## Installation
+
+### Install Steps (macOS & Linux)
+You can either build the project or download the artifacts from the releases on GitHub. 
+
+If you build the project using CMake, you can install the headers and libs directly.
+
+```bash
+# install to default location (usually usr/local/include and /usr/local/lib)
+sudo cmake --install ./build --config Release   
+```
+
+If you first want to check out what the install is going, simply install locally as follows:
+
+```bash
+cmake --install ./build --prefix ./install
+
+```
 
 
 ## Additional Resources
