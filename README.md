@@ -72,7 +72,11 @@ cd espresso
 ```
 Trigger the CMake 'generate' and 'build' steps.
 ```bash
-cmake -S ./src -B ./build 
+cmake -S ./src -B ./build -DCMAKE_BUILD_TYPE=Release # for release build
+cmake -S ./src -B ./build -DCMAKE_BUILD_TYPE=Debug   # for debug build
+```
+
+```bash
 cmake --build ./build --config Release   # For release build (libespresso.a)
 cmake --build ./build --config Debug     # For debug build (libespressod.a)
 ```
@@ -89,22 +93,34 @@ cmake --build ./build --config Release   # libespresso.lib
 cmake --build ./build --config Debug     # libespressod.lib
 ```
 
+## Installation
+
+### Install Steps (macOS & Linux)
+You can either build the project or download the artifacts from the releases on GitHub. 
+
+If you build the project using CMake, you can install the headers and libs directly.
+
+```bash
+# install to default location (usually usr/local/include and /usr/local/lib)
+sudo cmake --install ./build --config Release   
+```
+
+If you first want to check out what the install is going, simply install locally as follows:
+
+```bash
+cmake --install ./build --prefix ./install
+
+```
 
 
-## Further Info
+## Additional Resources
+There are other resources you can use to familiarize yourself with the library, as follows:
 
-### Developer Guide
-The [Developer Guide](docs/Developer-Guide.md) guide will walk you through how to incorporate the library into your project and how to exercise the code. 
+- **Developer Guide** - The [Developer Guide](docs/Developer-Guide.md) guide will walk you through how to incorporate the library into your project and how to exercise the library. 
 
+- **Sample Implementations** - For examples of how the library is used in practice, check out [espresso tools](https://github.com/donnachaforde/espresso-tools), which is a collection of simple CLI utilities that utilize `libespressso` to manage their command-line args. 
 
-
-
-### Examples
-To see examples of how the **espresso** library is used in anger, check out [espresso tools](https://github.com/donnachaforde/espresso-tools), which is a collection of simple CLI utilities. 
-
-### Blog
-
-There is a [blog](docs/README.md) about the design of the **espresso** library that describes how its design evolved. 
+- **Design Discussions** - For those who'd like to delve deeper into the design philosophy behind `libespresso`, there are a few blog articles [here](https://donnachaforde.github.io/blogs+posts/software-engineering/) under the section 'Designing the espresso library'. 
 
 
 
@@ -114,5 +130,5 @@ There is a [blog](docs/README.md) about the design of the **espresso** library t
 
 Donnacha Forde
 
-_Last updated:_ September 2025
+_Last updated: September 2025_
 
