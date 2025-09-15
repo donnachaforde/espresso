@@ -61,6 +61,8 @@ endif()
 
 
 # Incorporate Google Tests
+set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+set(INSTALL_GMOCK OFF CACHE BOOL "" FORCE)
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -83,10 +85,8 @@ target_include_directories(espresso_tests
     ${CMAKE_SOURCE_DIR}/include/espresso
 )
 
-target_link_libraries(espresso_tests
-  PRIVATE
-    espresso
-    gtest_main
+target_link_libraries(espresso_tests PRIVATE espresso
+                                             gtest_main
 ) 
 
 add_test(NAME espresso_tests COMMAND espresso_tests)

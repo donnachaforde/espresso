@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (donnacha.forde@simply-components.com)           
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½1993-20250, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.

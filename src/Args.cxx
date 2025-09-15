@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½1993-20250, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
@@ -924,7 +924,7 @@ string Args::getCopyrightNotice() const
 	
 	if (!m_strCopyrightOwner.empty() && !m_strCopyrightYear.empty())
 	{
-		//strCopyrightNotice = "Copyright© ";
+		//strCopyrightNotice = "Copyrightï¿½ ";
 		strCopyrightNotice = "Copyright ";
 		strCopyrightNotice += m_strCopyrightYear;
 		strCopyrightNotice += ", ";

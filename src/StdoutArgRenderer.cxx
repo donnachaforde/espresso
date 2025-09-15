@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½ 1993-2025, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
@@ -163,14 +163,17 @@ void StdoutArgRenderer::onRequestInfo(const Args& args)
 																					<< endl;
 	}
 
+	// @todo Only provide this info when some other flag is set - e.g. --verbose or --info-detailed
+	// cout << "Built using the espresso library, Version " << sys::getBuildVersion()
+	// 	 << " - compiled at " << __TIME__ << " " << __DATE__ << "."					<< endl
+	// 	 << "https://github.com/donnachaforde/espresso/releases"					<< endl
+	// 																				<< endl
+	// 	 << args.getBugReportingInstructions()										<< endl
+	// 																				<< endl
+	// 	 << args.getCopyrightNotice()												<< endl;
 
-	cout << "Built using the espresso library, Version " << sys::getBuildVersion()
-		 << " - compiled at " << __TIME__ << " " << __DATE__ << "."					<< endl
-		 << "https://github.com/donnachaforde/espresso/releases"					<< endl
-																					<< endl
-		 << args.getBugReportingInstructions()										<< endl
-																					<< endl
-		 << args.getCopyrightNotice()												<< endl;
+
+	cout << args.getBugReportingInstructions() << " " << args.getCopyrightNotice()	<< endl;
 
 	return;
 }

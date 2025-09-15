@@ -6,7 +6,7 @@
 //
 // Developed by Donnacha Forde (@DonnachaForde)
 //
-// Copyright © 1993-2020, Donnacha Forde. All rights reserved.
+// Copyright ï¿½1993-20250, Donnacha Forde. All rights reserved.
 //
 //
 // This software is provided 'as is' without warranty, expressed or implied.
@@ -133,7 +133,7 @@ namespace espresso
 	};
 
 
-	static const char* BUILD_VERSION = "0.10.1.102-beta";
+	static const char* BUILD_VERSION = "0.11.1.0-beta";
 }
 
 
