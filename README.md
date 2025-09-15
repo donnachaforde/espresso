@@ -72,8 +72,8 @@ cd espresso
 ```
 Trigger the CMake 'generate' and 'build' steps.
 ```bash
-cmake -S ./src -B ./build -DCMAKE_BUILD_TYPE=Release # for release build
-cmake -S ./src -B ./build -DCMAKE_BUILD_TYPE=Debug   # for debug build
+cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release # for release build
+cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Debug   # for debug build
 ```
 
 ```bash
