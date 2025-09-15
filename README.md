@@ -89,8 +89,8 @@ You can use CMake with Visual Studio 2019 or later:
 
 ```powershell
 cmake -S ./src -B ./build
-cmake --build ./build --config Release   # libespresso.lib
-cmake --build ./build --config Debug     # libespressod.lib
+cmake --build ./build --target espresso --config Release   # libespresso.lib
+cmake --build ./build --target espresso --config Debug     # libespressod.lib
 ```
 
 ## Installation
